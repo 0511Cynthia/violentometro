@@ -1,9 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import Tittle from './img/Tittle.png';
 import Edad from './img/Edad.png';
 import './Start.css';
 import Btn from './components/Btns/Btn';
 
-function App() {
+function Start() {
+  const navigate = useNavigate();
+
+  const toLevel3= () =>{
+    navigate("/Level3");
+  }
   return (
     <div className="Container">
       <header className="App-header">
@@ -18,9 +24,9 @@ function App() {
           Learn React
         </a> */}
       </header>
-      <Btn/>
+      <Btn onClick={toLevel3}/>
     </div>
   );
 }
 
-export default App;
+export default Start;
