@@ -4,20 +4,22 @@
     margin-right: 1%;
 }
 .AppHeader {
-    min-height: 10vh;
+    min-height: 5vh;
     display: flex;
     flex-direction: column;
     align-items: start;
     color: #0b0b16;
     display: grid;
-    grid-template-columns: .2fr .1fr .2fr; 
+    grid-template-columns: .1fr .1fr .1fr; 
 }
+
 .Hp{
     padding-top: 20%;
 }
-.columContainer{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.columnContainer{
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
 }
 .imgContainer{
     display: flex;
@@ -25,5 +27,5 @@
 }
 .Thermometer{ 
     padding-bottom: .2%;
-    width: 35vmin;   
+    width: 34vh;  
 }

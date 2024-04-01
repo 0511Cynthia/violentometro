@@ -9,18 +9,17 @@ function Level3(){
     return(
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
-                <img src={Heart} className={styles.Heart} alt=''/>
+                <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
                 <img src={Hp} className={styles.Hp} alt=''/>
             </div>
-            <Words/>
             <div className={styles.columnContainer}>
+            <Words/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>
                 
-                <Kitten/>
             </div>
-            
+            <Kitten/>
         </div>
     )
 }
