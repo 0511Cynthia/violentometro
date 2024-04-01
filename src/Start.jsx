@@ -15,14 +15,6 @@ function Start() {
       <header className="App-header">
         <img src={Tittle} className='Tittle' alt=''/>
         <img src={Edad} className='Edad' alt=''/>
-        {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
       </header>
       <Btn onClick={toLevel3}/>
     </div>
