@@ -4,9 +4,9 @@
 }
 .video {
     padding-bottom: 2%;
-    padding-left: 2%;
-    width: 6%;
-    height: 16%;
+    /* padding-left: 2%; */
+    width: 7%;
+    height: 15%;
     position: absolute; 
     bottom: 0; 
 }

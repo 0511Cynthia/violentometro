@@ -4,15 +4,15 @@ import styles from './Level3.module.css';
 import Thermometer from '../img/Thermometer.png';
 import Kitten from '../components/Kitten/Kitten';
 import Words from '../components/Words/Words';
-import Mentir from '../img/Words/Mentir.png';
-import Celar from '../img/Words/Celar.png';
-import Stalkear from '../img/Words/Stalkear.png';
-import Prohibir from '../img/Words/prohibir.png';
-import Golpear from '../img/Words/Golpear.png';
-import Sextorcion from '../img/Words/Sextorcion.png';
-import Amenazar from '../img/Words/Amenazar.png';
-import Violar from '../img/Words/Violar.png';
-import Matar from '../img/Words/Matar.png';
+import Mentir from '../img/Words3/Mentir.png';
+import Celar from '../img/Words3/Celar.png';
+import Stalkear from '../img/Words3/Stalkear.png';
+import Prohibir from '../img/Words3/prohibir.png';
+import Golpear from '../img/Words3/Golpear.png';
+import Sextorcion from '../img/Words3/Sextorcion.png';
+import Amenazar from '../img/Words3/Amenazar.png';
+import Violar from '../img/Words3/Violar.png';
+import Matar from '../img/Words3/Matar.png';
 
 function Level3(){
     const targetAreas = [
