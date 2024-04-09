@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Start from './Start';
-import Level3 from './level3/Level3.jsx';
+import Level3 from '../src/pages/level3/Level3';
 
 function App() {
     return (

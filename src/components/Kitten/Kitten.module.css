@@ -2,13 +2,15 @@
     display: grid;
     grid-template-columns: .1fr 1fr;
 }
+
 .video {
-    padding-bottom: 2%;
+    padding-bottom: 0%;
     /* padding-left: 2%; */
-    width: 7%;
-    height: 15%;
+    width: 10%;
+    height: 30%;
     position: absolute; 
     bottom: 0; 
+    margin-bottom: 0%;
 }
 .btnContainer{
     position: absolute; 

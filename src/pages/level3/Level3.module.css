@@ -1,0 +1,32 @@
+.Container{
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.AppHeader {
+    min-height: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    color: #0b0b16;
+    display: grid;
+    grid-template-columns: .1fr .1fr .1fr .1fr; 
+}
+
+.Hp{
+    height: 7vmin;
+    padding-top: 20%;
+}
+.columnContainer{
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+}
+.imgContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+.Thermometer{ 
+    padding-bottom: .2%;
+    width: 34vh;  
+}

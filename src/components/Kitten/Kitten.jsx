@@ -1,4 +1,4 @@
-import Cat from '../../img/Cat.png';
+import Cat from '../../img/cat.gif';
 import Next from '../../img/Next.png';
 import Sign from '../Signs/Sign';
 import styles from './Kitten.module.css';

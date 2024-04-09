@@ -4,3 +4,7 @@
     width: 20vmin;
     height: 5vmin;
 }
+
+.containerWord .Word:hover{
+    cursor: pointer;
+}

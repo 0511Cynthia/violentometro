@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import Tittle from './img/Tittle.png';
 import Edad from './img/Edad.png';
+import btn3 from './img/btn3.png';
+import btn2 from './img/btn2.png';
+import Teen from './img/Teen.gif';
 import './Start.css';
 import Btn from './components/Btns/Btn';
 
@@ -16,7 +19,14 @@ function Start() {
         <img src={Tittle} className='Tittle' alt=''/>
         <img src={Edad} className='Edad' alt=''/>
       </header>
-      <Btn onClick={toLevel3}/>
+
+      <div className='container-btn3'>
+          <Btn image={Teen} button={btn3} onClick={toLevel3}/>
+      </div>
+      <div className='container-btn2'>
+          <Btn image={Teen} button={btn2} onClick={toLevel3}/>
+      </div>
+      
     </div>
   );
 }
