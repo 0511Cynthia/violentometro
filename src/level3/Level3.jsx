@@ -16,7 +16,15 @@ import Matar from '../img/Words3/Matar.png';
 
 function Level3(){
     const targetAreas = [
-        {minX: -155, minY: 550, maxX: -150, maxY: 555}
+        {minX: -160, minY: 545, maxX: -150, maxY: 555},
+        {minX: -160, minY: 480, maxX: -150, maxY: 490},
+        {minX: -160, minY: 425, maxX: -150, maxY: 440},
+        {minX: -160, minY: 360, maxX: -150, maxY: 370},
+        {minX: -160, minY: 295, maxX: -150, maxY: 325},
+        {minX: -160, minY: 235, maxX: -150, maxY: 260},
+        {minX: -160, minY: 180, maxX: -150, maxY: 200},
+        {minX: -160, minY: 115, maxX: -150, maxY: 135},
+        {minX: -160, minY: 20, maxX: -150, maxY: 50}
     ]
     return(
         <div className={styles.Container}>
@@ -26,14 +34,14 @@ function Level3(){
             </div>
             <div className={styles.columnContainer}>
                 <Words image={Mentir} targetArea={targetAreas[0]}/>
-                <Words image={Celar} targetArea={targetAreas[0]}/>
-                <Words image={Stalkear} targetArea={targetAreas[0]}/>
-                <Words image={Prohibir} targetArea={targetAreas[0]}/>
-                <Words image={Golpear} targetArea={targetAreas[0]}/>
-                <Words image={Sextorcion} targetArea={targetAreas[0]}/>
-                <Words image={Amenazar} targetArea={targetAreas[0]}/>
-                <Words image={Violar} targetArea={targetAreas[0]}/>
-                <Words image={Matar} targetArea={targetAreas[0]}/>
+                <Words image={Celar} targetArea={targetAreas[1]}/>
+                <Words image={Stalkear} targetArea={targetAreas[2]}/>
+                <Words image={Prohibir} targetArea={targetAreas[3]}/>
+                <Words image={Golpear} targetArea={targetAreas[4]}/>
+                <Words image={Sextorcion} targetArea={targetAreas[5]}/>
+                <Words image={Amenazar} targetArea={targetAreas[6]}/>
+                <Words image={Violar} targetArea={targetAreas[7]}/>
+                <Words image={Matar} targetArea={targetAreas[8]}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>

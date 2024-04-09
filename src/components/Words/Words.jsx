@@ -19,7 +19,7 @@ export default function Word({image, targetArea}){
             const newX = e.clientX - initialX;
             const newY = e.clientY - initialY;
             // setPosition({ x: newX, y: newY });
-            // console.log("x: "+newX, "y:"+newY);
+            console.log("x: "+newX, "y:"+newY);
 
             if (newX <= -150) {
                 setPosition({ x: newX, y: newY });
