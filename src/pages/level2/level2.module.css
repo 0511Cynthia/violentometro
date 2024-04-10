@@ -10,7 +10,7 @@
     align-items: start;
     color: #0b0b16;
     display: grid;
-    grid-template-columns: .1fr .1fr .1fr; 
+    grid-template-columns: .1fr .1fr .1fr .1fr; 
 }
 
 .Hp{
