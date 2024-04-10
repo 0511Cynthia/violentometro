@@ -30,3 +30,10 @@
     padding-bottom: .2%;
     width: 34vh;  
 }
+.btnContainer{
+    height: 8vh;
+    width: 12vh;
+    position: absolute;
+    bottom: 8vh;
+    left: 90vh;
+}

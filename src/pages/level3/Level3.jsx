@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
 import styles from './Level3.module.css';
@@ -26,6 +27,30 @@ function Level3(){
         {minX: -160, minY: 115, maxX: -150, maxY: 135},
         {minX: -160, minY: 20, maxX: -150, maxY: 50}
     ]
+    const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
+
+    const checkPiecesPlacement = () => {
+        const newPiecesInPlace = targetAreas.map((area, index) => {
+            const piece = document.getElementById(`word-${index}`);
+            if (!piece) return false;
+            const pieceRect = piece.getBoundingClientRect();
+            return (
+                pieceRect.left >= area.minX &&
+                pieceRect.right <= area.maxX &&
+                pieceRect.top >= area.minY &&
+                pieceRect.bottom <= area.maxY
+            );
+        });
+
+        setPiecesInPlace(newPiecesInPlace);
+
+        piecesInPlace.forEach((isInPlace, index) => {
+            if (!isInPlace) {
+                console.log(`La pieza ${index} no está en su lugar.`);
+            }
+        });
+    };
+
     return(
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
@@ -35,20 +60,23 @@ function Level3(){
                 <img src={Hp} className={styles.Hp} alt=''/>
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Mentir} targetArea={targetAreas[0]}/>
-                <Words image={Celar} targetArea={targetAreas[1]}/>
-                <Words image={Stalkear} targetArea={targetAreas[2]}/>
-                <Words image={Prohibir} targetArea={targetAreas[3]}/>
-                <Words image={Golpear} targetArea={targetAreas[4]}/>
-                <Words image={Sextorcion} targetArea={targetAreas[5]}/>
-                <Words image={Amenazar} targetArea={targetAreas[6]}/>
-                <Words image={Violar} targetArea={targetAreas[7]}/>
-                <Words image={Matar} targetArea={targetAreas[8]}/>
+                <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${0}`}/>
+                <Words image={Celar} targetArea={targetAreas[1]} id={`word-${1}`}/>
+                <Words image={Stalkear} targetArea={targetAreas[2]} id={`word-${2}`}/>
+                <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${3}`}/>
+                <Words image={Golpear} targetArea={targetAreas[4]} id={`word-${4}`}/>
+                <Words image={Sextorcion} targetArea={targetAreas[5]} id={`word-${5}`}/>
+                <Words image={Amenazar} targetArea={targetAreas[6]} id={`word-${6}`}/>
+                <Words image={Violar} targetArea={targetAreas[7]} id={`word-${7}`}/>
+                <Words image={Matar} targetArea={targetAreas[8]} id={`word-${8}`}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>
             </div>
             <Kitten/>
+            <div className={styles.btnContainer}>
+                <button style={{height: "100%",width: "100%",backgroundColor: "gray"}} onClick={checkPiecesPlacement}>Verificar</button>
+            </div>
         </div>
     )
 }

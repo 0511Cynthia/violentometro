@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './Words.module.css';
 
-export default function Word({image, targetArea}){
+export default function Word({image, targetArea, id}){
     const area = {minX: -850, minY: 120, maxX: -100, maxY: 450 };
     const initialPositionX = Math.random() * (area.maxX - area.minX) + area.minX;
     const initialPositionY = Math.random() * (area.maxY - area.minY) + area.minY;
@@ -19,7 +19,7 @@ export default function Word({image, targetArea}){
             const newX = e.clientX - initialX;
             const newY = e.clientY - initialY;
             // setPosition({ x: newX, y: newY });
-            console.log("x: "+newX, "y:"+newY);
+            // console.log("x: "+newX, "y:"+newY);
 
             if (newX <= -150) {
                 setPosition({ x: newX, y: newY });
@@ -34,19 +34,19 @@ export default function Word({image, targetArea}){
         };
 
         const handleMouseUp = () => {
-        setDragging(false);
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
-        if (isInTargetArea) {
-            console.log('La pieza está en el lugar correcto.');
-        }
+            setDragging(false);
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseup', handleMouseUp);
+            if (isInTargetArea) {
+                console.log(`La pieza ${id} está en el lugar correcto.`);
+            }
         };
 
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseup', handleMouseUp);
     };
     return(
-        <div className={styles.Container} style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
+        <div  id={id} className={styles.Container} style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
         onMouseDown={handleMouseDown}>
             
             <picture className={styles.containerWord}>
