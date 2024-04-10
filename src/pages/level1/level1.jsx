@@ -8,10 +8,10 @@ import Empujar from '../../img/Words1/Empujar.png';
 import Golpear from '../../img/Words1/Golpear.png';
 import Pellizcar from '../../img/Words1/Pellizcar.png'; 
 import QC from '../../img/Words1/QuitarCosas.png'; 
-import styles from './Level1.module.css';
+import styles from './level1.module.css';
 
 
-export default function level2(){
+function Level1(){
     const targetAreas = [
         {minX: -160, minY: 545, maxX: -150, maxY: 555},
         {minX: -160, minY: 480, maxX: -150, maxY: 490},
@@ -41,3 +41,5 @@ export default function level2(){
         </div>
     )
 }
+
+export default Level1;

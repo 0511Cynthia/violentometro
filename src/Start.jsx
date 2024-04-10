@@ -14,7 +14,15 @@ function Start() {
   const navigate = useNavigate();
 
   const toLevel3= () =>{
-    navigate("/Level3");
+    navigate("/level3");
+  }
+
+  const toLevel2= () =>{
+    navigate("/level2");
+  }
+
+  const toLevel1= () =>{
+    navigate("/level1");
   }
   return (
     <main className="main">
@@ -25,10 +33,10 @@ function Start() {
 
       <div className='Container'>
       <div className='container-btn3'>
-        <Btn image={Baby} button={btn1} onClick={toLevel3}/>
+        <Btn image={Baby} button={btn1} onClick={toLevel1}/>
       </div>
       <div className='container-btn2'>
-        <Btn image={Kid} button={btn2} onClick={toLevel3}/>
+        <Btn image={Kid} button={btn2} onClick={toLevel2}/>
       </div>
       <div className='container-btn1'>
         <Btn image={Teen} button={btn3} onClick={toLevel3}/>          

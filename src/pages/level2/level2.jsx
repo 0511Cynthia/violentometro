@@ -1,11 +1,11 @@
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
-import styles from './Level3.module.css';
+import styles from './level2.module.css';
 import Thermometer from '../../img/Thermometer.png';
 import Kitten from '../../components/Kitten/Kitten';
 import Words from '../../components/Words/Words';
 
-export default function level2(){
+function Level2(){
     return(
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
@@ -26,3 +26,5 @@ export default function level2(){
         </div>
     )
 }
+
+export default Level2;
