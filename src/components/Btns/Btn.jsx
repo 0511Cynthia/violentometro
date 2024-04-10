@@ -2,9 +2,10 @@ import styles from './Btn.module.css';
 
 export default function Btn({ onClick, image, button }){
     return(
-        <div className='Container'>
+        <main className={styles.main}>
+          
             <picture className={styles.containerVideo}>
-                <img src={image} className={styles.video} alt='Teen'/>
+                <img src={image} className={styles.video} alt=''/>
             </picture>   
 
             <div className={styles.btnContainer}>
@@ -12,7 +13,7 @@ export default function Btn({ onClick, image, button }){
                     <img src={button} className={styles.btn3} alt=''/>
                 </button>
             </div>
-            
-        </div>
+
+        </main>
     )
 }
