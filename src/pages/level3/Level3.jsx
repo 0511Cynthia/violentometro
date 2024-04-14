@@ -14,6 +14,7 @@ import Sextorcion from '../../img/Words3/Sextorcion.png';
 import Amenazar from '../../img/Words3/Amenazar.png';
 import Violar from '../../img/Words3/Violar.png';
 import Matar from '../../img/Words3/Matar.png';
+import BtnVerificar from '../../components/Verificar/btnVerificar';
 
 function Level3(){
     const targetAreas = [
@@ -58,6 +59,7 @@ function Level3(){
                 <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
                 <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
                 <img src={Hp} className={styles.Hp} alt=''/>
+                <BtnVerificar onclick={checkPiecesPlacement}/>
             </div>
             <div className={styles.columnContainer}>
                 <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${0}`}/>
@@ -74,9 +76,7 @@ function Level3(){
                 </div>
             </div>
             <Kitten/>
-            <div className={styles.btnContainer}>
-                <button style={{height: "100%",width: "100%",backgroundColor: "gray"}} onClick={checkPiecesPlacement}>Verificar</button>
-            </div>
+            
         </div>
     )
 }

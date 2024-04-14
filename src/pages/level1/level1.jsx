@@ -9,6 +9,7 @@ import Golpear from '../../img/Words1/Golpear.png';
 import Pellizcar from '../../img/Words1/Pellizcar.png'; 
 import QC from '../../img/Words1/QuitarCosas.png'; 
 import styles from './level1.module.css';
+// import btnVerificar from '../../components/Verificar/btnVerificar';
 
 
 function Level1(){
@@ -26,9 +27,10 @@ function Level1(){
                 <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
                 <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
                 <img src={Hp} className={styles.Hp} alt=''/>
+
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Burlar} targetArea={targetAreas[0]} />
+                <Words image={Burlar} targetArea={targetAreas[0]} style={{width: "45vmin", height: "10vmin"}}/>
                 <Words image={Empujar} targetArea={targetAreas[1]} />
                 <Words image={Golpear} targetArea={targetAreas[2]} />
                 <Words image={Pellizcar} targetArea={targetAreas[3]} />

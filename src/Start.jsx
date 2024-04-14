@@ -19,13 +19,10 @@ function Start() {
 
   const toLevel2= () =>{
     navigate("/level2");
-<<<<<<< HEAD
-=======
   }
 
   const toLevel1= () =>{
     navigate("/level1");
->>>>>>> featureLvl1
   }
   return (
     <main className="main">

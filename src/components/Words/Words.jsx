@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './Words.module.css';
 
-export default function Word({image, targetArea, id}){
+export default function Word({image, targetArea, id, style}){
     const area = {minX: -850, minY: 120, maxX: -100, maxY: 450 };
     const initialPositionX = Math.random() * (area.maxX - area.minX) + area.minX;
     const initialPositionY = Math.random() * (area.maxY - area.minY) + area.minY;
@@ -50,7 +50,7 @@ export default function Word({image, targetArea, id}){
         onMouseDown={handleMouseDown}>
             
             <picture className={styles.containerWord}>
-                <img src={image} className={styles.Word} alt=''/>
+                <img src={image} className={styles.Word} style={style} alt=''/>
             </picture>   
             
         </div>
