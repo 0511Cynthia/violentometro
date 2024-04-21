@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styles from './Words.module.css';
 
-export default function Word({image, targetArea, id, style}){
-    const area = {minX: -850, minY: 120, maxX: -100, maxY: 450 };
+export default function Word({image, targetArea, id, updatePieceStatus, index, style}){
+    const area = {minX: -850, minY: 110, maxX: -100, maxY: 400 };
     const initialPositionX = Math.random() * (area.maxX - area.minX) + area.minX;
     const initialPositionY = Math.random() * (area.maxY - area.minY) + area.minY;
     const [position, setPosition] = useState({ x: initialPositionX, y: initialPositionY });
@@ -39,6 +39,9 @@ export default function Word({image, targetArea, id, style}){
             window.removeEventListener('mouseup', handleMouseUp);
             if (isInTargetArea) {
                 console.log(`La pieza ${id} está en el lugar correcto.`);
+                updatePieceStatus(index, true);
+            }else{
+                updatePieceStatus(index, false);
             }
         };
 

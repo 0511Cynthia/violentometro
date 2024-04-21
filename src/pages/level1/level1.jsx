@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
 import Thermometer from '../../img/Thermometer.png';
@@ -20,21 +21,68 @@ function Level1(){
         {minX: -160, minY: 360, maxX: -150, maxY: 370},
         {minX: -160, minY: 295, maxX: -150, maxY: 325}
     ]
+
+    const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
+    const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
+
+    const toggleHeartVisibility = (index) => {
+        setHeartVisibility(prevState => {
+            const newState = [...prevState];
+            newState[index] = !newState[index];
+            return newState;
+        });
+    };
+
+    const updatePieceStatus = (index, status) => {
+        setPiecesInPlace(prevState => {
+          const newState = [...prevState];
+          newState[index] = status;
+          return newState;
+        });
+    };
+
+    const checkPiecesPlacement = () => {
+        let piecesNotInPlace = 0;
+        piecesInPlace.map((piece, index)=>{
+            if(piece === true){
+                console.log(`La pieza ${index+1} esta esta en su lugar`);
+            }else{
+                piecesNotInPlace++
+            }
+        })
+        lostALife(piecesNotInPlace);
+    }
+
+    const lostALife = (pieces) =>{
+        if(pieces>0){
+            const firstVisibleHeartIndex = heartVisibility.indexOf(true);
+            if (firstVisibleHeartIndex !== -1) {
+                toggleHeartVisibility(firstVisibleHeartIndex);
+            }
+        }
+    }
     return(
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
-                <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
-                <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
-                <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
+                {heartVisibility.map((visible, index) => (
+                        visible && (
+                            <img
+                                key={index}
+                                src={Heart}
+                                className={styles.Heart}
+                                style={{width: "15vh", height: "15vh"}}
+                                alt=''
+                            />
+                        )
+                ))}
                 <img src={Hp} className={styles.Hp} alt=''/>
-
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Burlar} targetArea={targetAreas[0]} style={{width: "45vmin", height: "10vmin"}}/>
-                <Words image={Empujar} targetArea={targetAreas[1]} />
-                <Words image={Golpear} targetArea={targetAreas[2]} />
-                <Words image={Pellizcar} targetArea={targetAreas[3]} />
-                <Words image={QC} targetArea={targetAreas[4]} />
+                <Words image={Burlar} targetArea={targetAreas[0]} style={{width: "45vmin", height: "10vmin"}}  updatePieceStatus={updatePieceStatus} index={0}/>
+                <Words image={Empujar} targetArea={targetAreas[1]}  updatePieceStatus={updatePieceStatus} index={1}/>
+                <Words image={Golpear} targetArea={targetAreas[2]}  updatePieceStatus={updatePieceStatus} index={2}/>
+                <Words image={Pellizcar} targetArea={targetAreas[3]}  updatePieceStatus={updatePieceStatus} index={3}/>
+                <Words image={QC} targetArea={targetAreas[4]}  updatePieceStatus={updatePieceStatus} index={4}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>

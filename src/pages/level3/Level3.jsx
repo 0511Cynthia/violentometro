@@ -29,48 +29,71 @@ function Level3(){
         {minX: -160, minY: 20, maxX: -150, maxY: 50}
     ]
     const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
+    const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
 
-    const checkPiecesPlacement = () => {
-        const newPiecesInPlace = targetAreas.map((area, index) => {
-            const piece = document.getElementById(`word-${index}`);
-            if (!piece) return false;
-            const pieceRect = piece.getBoundingClientRect();
-            return (
-                pieceRect.left >= area.minX &&
-                pieceRect.right <= area.maxX &&
-                pieceRect.top >= area.minY &&
-                pieceRect.bottom <= area.maxY
-            );
-        });
-
-        setPiecesInPlace(newPiecesInPlace);
-
-        piecesInPlace.forEach((isInPlace, index) => {
-            if (!isInPlace) {
-                console.log(`La pieza ${index} no está en su lugar.`);
-            }
+    const toggleHeartVisibility = (index) => {
+        setHeartVisibility(prevState => {
+            const newState = [...prevState];
+            newState[index] = !newState[index];
+            return newState;
         });
     };
+
+    const updatePieceStatus = (index, status) => {
+        setPiecesInPlace(prevState => {
+          const newState = [...prevState];
+          newState[index] = status;
+          return newState;
+        });
+    };
+
+    const checkPiecesPlacement = () => {
+        let piecesNotInPlace = 0;
+        piecesInPlace.map((piece, index)=>{
+            if(piece === true){
+                console.log(`La pieza ${index+1} esta esta en su lugar`);
+            }else{
+                piecesNotInPlace++
+            }
+        })
+        lostALife(piecesNotInPlace);
+    }
+
+    const lostALife = (pieces) =>{
+        if(pieces>0){
+            const firstVisibleHeartIndex = heartVisibility.indexOf(true);
+            if (firstVisibleHeartIndex !== -1) {
+                toggleHeartVisibility(firstVisibleHeartIndex);
+            }
+        }
+    }
 
     return(
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
-                <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
-                <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
-                <img src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} alt=''/>
-                <img src={Hp} className={styles.Hp} alt=''/>
-                <BtnVerificar onclick={checkPiecesPlacement}/>
+            {heartVisibility.map((visible, index) => (
+                    visible && (
+                        <img
+                            key={index}
+                            src={Heart}
+                            className={styles.Heart}
+                            style={{width: "15vh", height: "15vh"}}
+                            alt=''
+                        />
+                    )
+                ))}
+                <BtnVerificar onClick={checkPiecesPlacement}/>
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${0}`}/>
-                <Words image={Celar} targetArea={targetAreas[1]} id={`word-${1}`}/>
-                <Words image={Stalkear} targetArea={targetAreas[2]} id={`word-${2}`}/>
-                <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${3}`}/>
-                <Words image={Golpear} targetArea={targetAreas[4]} id={`word-${4}`}/>
-                <Words image={Sextorcion} targetArea={targetAreas[5]} id={`word-${5}`}/>
-                <Words image={Amenazar} targetArea={targetAreas[6]} id={`word-${6}`}/>
-                <Words image={Violar} targetArea={targetAreas[7]} id={`word-${7}`}/>
-                <Words image={Matar} targetArea={targetAreas[8]} id={`word-${8}`}/>
+                <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} updatePieceStatus={updatePieceStatus} index={0}/>
+                <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} updatePieceStatus={updatePieceStatus} index={1}/>
+                <Words image={Stalkear} targetArea={targetAreas[2]} id={`word-${3}`} updatePieceStatus={updatePieceStatus} index={2}/>
+                <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${4}`} updatePieceStatus={updatePieceStatus} index={3}/>
+                <Words image={Golpear} targetArea={targetAreas[4]} id={`word-${5}`} updatePieceStatus={updatePieceStatus} index={4}/>
+                <Words image={Sextorcion} targetArea={targetAreas[5]} id={`word-${6}`} updatePieceStatus={updatePieceStatus} index={5}/>
+                <Words image={Amenazar} targetArea={targetAreas[6]} id={`word-${7}`} updatePieceStatus={updatePieceStatus} index={6}/>
+                <Words image={Violar} targetArea={targetAreas[7]} id={`word-${8}`} updatePieceStatus={updatePieceStatus} index={7}/>
+                <Words image={Matar} targetArea={targetAreas[8]} id={`word-${9}`} updatePieceStatus={updatePieceStatus} index={8}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>
