@@ -59,7 +59,7 @@ function Level3(){
         lostALife(piecesNotInPlace);
     }
 
-    const lostALife = (pieces) =>{
+    const lostALife = (pieces) =>{                 
         if(pieces>0){
             const firstVisibleHeartIndex = heartVisibility.indexOf(true);
             if (firstVisibleHeartIndex !== -1) {
@@ -85,15 +85,15 @@ function Level3(){
                 <BtnVerificar onClick={checkPiecesPlacement}/>
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} updatePieceStatus={updatePieceStatus} index={0}/>
-                <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} updatePieceStatus={updatePieceStatus} index={1}/>
-                <Words image={Stalkear} targetArea={targetAreas[2]} id={`word-${3}`} updatePieceStatus={updatePieceStatus} index={2}/>
-                <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${4}`} updatePieceStatus={updatePieceStatus} index={3}/>
-                <Words image={Golpear} targetArea={targetAreas[4]} id={`word-${5}`} updatePieceStatus={updatePieceStatus} index={4}/>
-                <Words image={Sextorcion} targetArea={targetAreas[5]} id={`word-${6}`} updatePieceStatus={updatePieceStatus} index={5}/>
+                <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{width: "18vmin", height: "4.2vmin"}} updatePieceStatus={updatePieceStatus} index={0}/>
+                <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} style={{width: "14vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
+                <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${4}`} style={{width: "19.5vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
+                <Words image={Stalkear} targetArea={targetAreas[2]} id={`word-${3}`} style={{width: "22vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={2}/>
+                <Words image={Golpear} targetArea={targetAreas[4]} id={`word-${5}`} style={{width: "20.8vmin", height: "5.8vmin"}} updatePieceStatus={updatePieceStatus} index={4}/>
+                <Words image={Sextorcion} targetArea={targetAreas[5]} id={`word-${6}`}  updatePieceStatus={updatePieceStatus} index={5}/>
                 <Words image={Amenazar} targetArea={targetAreas[6]} id={`word-${7}`} updatePieceStatus={updatePieceStatus} index={6}/>
-                <Words image={Violar} targetArea={targetAreas[7]} id={`word-${8}`} updatePieceStatus={updatePieceStatus} index={7}/>
-                <Words image={Matar} targetArea={targetAreas[8]} id={`word-${9}`} updatePieceStatus={updatePieceStatus} index={8}/>
+                <Words image={Violar} targetArea={targetAreas[7]} id={`word-${8}`} style={{width: "18vmin", height: "4.2vmin"}} updatePieceStatus={updatePieceStatus} index={7}/>
+                <Words image={Matar} targetArea={targetAreas[8]} id={`word-${9}`} style={{width: "18vmin", height: "4.2vmin"}} updatePieceStatus={updatePieceStatus} index={8}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>
