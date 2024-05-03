@@ -78,11 +78,11 @@ function Level1(){
                 <img src={Hp} className={styles.Hp} alt=''/>
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Burlar} targetArea={targetAreas[0]} style={{width: "45vmin", height: "10vmin"}}  updatePieceStatus={updatePieceStatus} index={0}/>
-                <Words image={Empujar} targetArea={targetAreas[1]}  updatePieceStatus={updatePieceStatus} index={1}/>
-                <Words image={Golpear} targetArea={targetAreas[2]}  updatePieceStatus={updatePieceStatus} index={2}/>
-                <Words image={Pellizcar} targetArea={targetAreas[3]}  updatePieceStatus={updatePieceStatus} index={3}/>
-                <Words image={QC} targetArea={targetAreas[4]}  updatePieceStatus={updatePieceStatus} index={4}/>
+                <Words image={Burlar} targetArea={targetAreas[0]} style={{width: "23vmin", height: "4vmin"}}  updatePieceStatus={updatePieceStatus} index={0}/>
+                <Words image={Empujar} targetArea={targetAreas[1]} style={{width: "23vmin", height: "5.2vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
+                <Words image={Golpear} targetArea={targetAreas[2]}  style={{width: "20.8vmin", height: "5.2vmin"}} updatePieceStatus={updatePieceStatus} index={2}/>
+                <Words image={Pellizcar} targetArea={targetAreas[3]} style={{width: "23vmin", height: "4vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
+                <Words image={QC} targetArea={targetAreas[4]} style={{width: "19.5vmin", height: "9vmin"}} updatePieceStatus={updatePieceStatus} index={4}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>

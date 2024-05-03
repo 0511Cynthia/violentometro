@@ -85,15 +85,15 @@ function Level2(){
                 <img src={Hp} className={styles.Hp} alt=''/>
             </div>
             <div className={styles.columnContainer}>
-                <Words image={EC} targetArea={targetAreas[0]} updatePieceStatus={updatePieceStatus} index={0}/>
-                <Words image={Apodos} targetArea={targetAreas[1]} updatePieceStatus={updatePieceStatus} index={1}/>
-                <Words image={Excluir} targetArea={targetAreas[2]} updatePieceStatus={updatePieceStatus} index={2}/>
-                <Words image={DC} targetArea={targetAreas[3]} updatePieceStatus={updatePieceStatus} index={3}/>
-                <Words image={BP} targetArea={targetAreas[4]} updatePieceStatus={updatePieceStatus} index={4}/>
-                <Words image={Amenazar} targetArea={targetAreas[5]} updatePieceStatus={updatePieceStatus} index={5}/>
-                <Words image={Lastimar} targetArea={targetAreas[6]} updatePieceStatus={updatePieceStatus} index={6}/>
-                <Words image={Golpear} targetArea={targetAreas[7]} updatePieceStatus={updatePieceStatus} index={7}/>
-                <Words image={TPI} targetArea={targetAreas[8]} updatePieceStatus={updatePieceStatus} index={8}/>
+                <Words image={EC} targetArea={targetAreas[0]}  style={{width: "23.6vmin", height: "8.2vmin"}} updatePieceStatus={updatePieceStatus} index={0}/>
+                <Words image={Apodos} targetArea={targetAreas[1]} style={{width: "20.8vmin", height: "5.8vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
+                <Words image={Excluir} targetArea={targetAreas[2]} style={{width: "19.2vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={2}/>
+                <Words image={DC} targetArea={targetAreas[3]} style={{width: "20.8vmin", height: "9vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
+                <Words image={BP} targetArea={targetAreas[4]} style={{width: "20.8vmin", height: "8.2vmin"}} updatePieceStatus={updatePieceStatus} index={4}/>
+                <Words image={Amenazar} targetArea={targetAreas[5]}  style={{width: "23.6vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={5}/>
+                <Words image={Lastimar} targetArea={targetAreas[6]} style={{width: "23.6vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={6}/>
+                <Words image={Golpear} targetArea={targetAreas[7]} style={{width: "20.8vmin", height: "5.8vmin"}} updatePieceStatus={updatePieceStatus} index={7}/>
+                <Words image={TPI} targetArea={targetAreas[8]} style={{width: "30vmin", height: "9vmin"}} updatePieceStatus={updatePieceStatus} index={8}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>

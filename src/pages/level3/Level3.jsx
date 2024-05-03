@@ -15,6 +15,7 @@ import Amenazar from '../../img/Words3/Amenazar.png';
 import Violar from '../../img/Words3/Violar.png';
 import Matar from '../../img/Words3/Matar.png';
 import BtnVerificar from '../../components/Verificar/btnVerificar';
+import Win from '../../components/win/win';
 
 function Level3(){
     const targetAreas = [
@@ -30,6 +31,15 @@ function Level3(){
     ]
     const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
+    // const [win, setWin] = useState ([false]);
+
+    // const winInvisibility = (index) => {
+    //     setWin(prevState => {
+    //         const newState = [...prevState];
+    //         newState[index] = !newState[index];
+    //         return newState;
+    //     })
+    // }
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -73,26 +83,27 @@ function Level3(){
             <div className={styles.AppHeader}>
             {heartVisibility.map((visible, index) => (
                     visible && (
-                        <img
-                            key={index}
-                            src={Heart}
-                            className={styles.Heart}
-                            style={{width: "15vh", height: "15vh"}}
-                            alt=''
+                        <img key={index} src={Heart} className={styles.Heart} style={{width: "15vh", height: "15vh"}} 
+                        alt=''
                         />
                     )
                 ))}
+                <img src={Hp} className={styles.Hp} alt=''/>
                 <BtnVerificar onClick={checkPiecesPlacement}/>
             </div>
+            
             <div className={styles.columnContainer}>
-                <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{width: "18vmin", height: "4.2vmin"}} updatePieceStatus={updatePieceStatus} index={0}/>
+                {/* {win ((invisible, index)=>(
+                    invisible && (<Win key={index}/>)
+                ))} */} 
+                <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{width: "18vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={0}/>
                 <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} style={{width: "14vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
                 <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${4}`} style={{width: "19.5vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
                 <Words image={Stalkear} targetArea={targetAreas[2]} id={`word-${3}`} style={{width: "22vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={2}/>
                 <Words image={Golpear} targetArea={targetAreas[4]} id={`word-${5}`} style={{width: "20.8vmin", height: "5.8vmin"}} updatePieceStatus={updatePieceStatus} index={4}/>
-                <Words image={Sextorcion} targetArea={targetAreas[5]} id={`word-${6}`}  updatePieceStatus={updatePieceStatus} index={5}/>
-                <Words image={Amenazar} targetArea={targetAreas[6]} id={`word-${7}`} updatePieceStatus={updatePieceStatus} index={6}/>
-                <Words image={Violar} targetArea={targetAreas[7]} id={`word-${8}`} style={{width: "18vmin", height: "4.2vmin"}} updatePieceStatus={updatePieceStatus} index={7}/>
+                <Words image={Sextorcion} targetArea={targetAreas[5]} id={`word-${6}`} style={{width: "28.5vmin", height: "4.2vmin"}} updatePieceStatus={updatePieceStatus} index={5}/>
+                <Words image={Amenazar} targetArea={targetAreas[6]} id={`word-${7}`} style={{width: "23.6vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={6}/>
+                <Words image={Violar} targetArea={targetAreas[7]} id={`word-${8}`} style={{width: "18vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={7}/>
                 <Words image={Matar} targetArea={targetAreas[8]} id={`word-${9}`} style={{width: "18vmin", height: "4.2vmin"}} updatePieceStatus={updatePieceStatus} index={8}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
