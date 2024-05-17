@@ -31,15 +31,7 @@ function Level3(){
     ]
     const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
-    // const [win, setWin] = useState ([false]);
-
-    // const winInvisibility = (index) => {
-    //     setWin(prevState => {
-    //         const newState = [...prevState];
-    //         newState[index] = !newState[index];
-    //         return newState;
-    //     })
-    // }
+    const [winVisible, setWinVisible] = useState (false);
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -66,15 +58,17 @@ function Level3(){
                 piecesNotInPlace++
             }
         })
-        lostALife(piecesNotInPlace);
+        if(piecesNotInPlace === 0){
+            setWinVisible(true);
+        }else{
+            lostALife();
+        }
     }
 
-    const lostALife = (pieces) =>{                 
-        if(pieces>0){
-            const firstVisibleHeartIndex = heartVisibility.indexOf(true);
-            if (firstVisibleHeartIndex !== -1) {
-                toggleHeartVisibility(firstVisibleHeartIndex);
-            }
+    const lostALife = () =>{                 
+        const firstVisibleHeartIndex = heartVisibility.indexOf(true);
+        if (firstVisibleHeartIndex !== -1) {
+            toggleHeartVisibility(firstVisibleHeartIndex);
         }
     }
 
@@ -93,9 +87,7 @@ function Level3(){
             </div>
             
             <div className={styles.columnContainer}>
-                {/* {win ((invisible, index)=>(
-                    invisible && (<Win key={index}/>)
-                ))} */} 
+                {winVisible && <Win />}
                 <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{width: "18vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={0}/>
                 <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} style={{width: "14vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
                 <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${4}`} style={{width: "19.5vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
