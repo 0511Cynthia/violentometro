@@ -16,22 +16,25 @@ import Violar from '../../img/Words3/Violar.png';
 import Matar from '../../img/Words3/Matar.png';
 import BtnVerificar from '../../components/Verificar/btnVerificar';
 import Win from '../../components/win/win';
+import Lose from '../../components/Lose/lose';
+import Lbl from '../../components/Lbls/Lbls';
 
 function Level3(){
     const targetAreas = [
-        {minX: -160, minY: 545, maxX: -150, maxY: 555},
-        {minX: -160, minY: 480, maxX: -150, maxY: 490},
-        {minX: -160, minY: 425, maxX: -150, maxY: 440},
-        {minX: -160, minY: 360, maxX: -150, maxY: 370},
-        {minX: -160, minY: 295, maxX: -150, maxY: 325},
-        {minX: -160, minY: 235, maxX: -150, maxY: 260},
-        {minX: -160, minY: 180, maxX: -150, maxY: 200},
-        {minX: -160, minY: 115, maxX: -150, maxY: 135},
-        {minX: -160, minY: 20, maxX: -150, maxY: 50}
+        {minX: -165, minY: 545, maxX: -150, maxY: 560},
+        {minX: -165, minY: 480, maxX: -150, maxY: 490},
+        {minX: -165, minY: 425, maxX: -150, maxY: 440},
+        {minX: -165, minY: 355, maxX: -150, maxY: 370},
+        {minX: -165, minY: 295, maxX: -150, maxY: 325},
+        {minX: -170, minY: 235, maxX: -150, maxY: 260},
+        {minX: -165, minY: 180, maxX: -150, maxY: 200},
+        {minX: -165, minY: 115, maxX: -150, maxY: 135},
+        {minX: -165, minY: 20, maxX: -150, maxY: 50}
     ]
     const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
     const [winVisible, setWinVisible] = useState (false);
+    const [loseVisible, setLoseVisible] = useState(false);
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -70,6 +73,9 @@ function Level3(){
         if (firstVisibleHeartIndex !== -1) {
             toggleHeartVisibility(firstVisibleHeartIndex);
         }
+        if (heartVisibility.filter(visible => visible).length === 1) {
+            setLoseVisible(true);
+        }
     }
 
     return(
@@ -88,6 +94,7 @@ function Level3(){
             
             <div className={styles.columnContainer}>
                 {winVisible && <Win />}
+                {loseVisible && <Lose />}
                 <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{width: "18vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={0}/>
                 <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} style={{width: "14vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
                 <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${4}`} style={{width: "19.5vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
