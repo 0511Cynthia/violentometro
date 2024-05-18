@@ -35,6 +35,7 @@ function Level3(){
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
     const [winVisible, setWinVisible] = useState (false);
     const [loseVisible, setLoseVisible] = useState(false);
+    const [kittenVisible, setKittenVisible] = useState(true);
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -63,6 +64,7 @@ function Level3(){
         })
         if(piecesNotInPlace === 0){
             setWinVisible(true);
+            setKittenVisible(false);
         }else{
             lostALife();
         }
@@ -91,10 +93,9 @@ function Level3(){
                 <img src={Hp} className={styles.Hp} alt=''/>
                 <BtnVerificar onClick={checkPiecesPlacement}/>
             </div>
-            
+            {winVisible && <Win />}
+            {loseVisible && <Lose />}
             <div className={styles.columnContainer}>
-                {winVisible && <Win />}
-                {loseVisible && <Lose />}
                 <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{width: "18vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={0}/>
                 <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} style={{width: "14vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
                 <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${4}`} style={{width: "19.5vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
@@ -108,7 +109,7 @@ function Level3(){
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>
             </div>
-            <Kitten/>
+            {kittenVisible && <Kitten/>}
             
         </div>
     )

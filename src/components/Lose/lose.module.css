@@ -1,8 +1,7 @@
 .Container{
-    position: absolute;
-    top: 20%;
-    right: 250%;
-}
+    margin-left: 35%;
+    margin-top: 3%;
+ }
 /* .containerVideo {
     padding-bottom: 0%;
     width: 10%;
