@@ -16,8 +16,8 @@ import Violar from '../../img/Words3/Violar.png';
 import Matar from '../../img/Words3/Matar.png';
 import BtnVerificar from '../../components/Verificar/btnVerificar';
 import Win from '../../components/win/win';
-import Lose from '../../components/Lose/lose';
-import Lbl from '../../components/Lbls/Lbls';
+// import Lose from '../../components/Lose/lose';
+import Lbls from '../../components/Lbls/Lbls';
 
 function Level3(){
     const targetAreas = [
@@ -93,8 +93,16 @@ function Level3(){
                 <img src={Hp} className={styles.Hp} alt=''/>
                 <BtnVerificar onClick={checkPiecesPlacement}/>
             </div>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
             {winVisible && <Win />}
-            {loseVisible && <Lose />}
+            {/* {loseVisible && <Lose />} */}
             <div className={styles.columnContainer}>
                 <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{width: "18vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={0}/>
                 <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} style={{width: "14vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
@@ -108,6 +116,7 @@ function Level3(){
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>
+                
             </div>
             {kittenVisible && <Kitten/>}
             

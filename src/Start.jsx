@@ -7,6 +7,7 @@ import btn1 from './img/btn1.png';
 import Teen from './img/Teen.gif';
 import Baby from './img/baby.gif';
 import Kid from './img/kid.png';
+import lOGO_fiscalía from './img/lOGO_fiscalía.png';
 import './Start.css';
 import Btn from './components/Btns/Btn';
 
@@ -27,6 +28,7 @@ function Start() {
   return (
     <main className="main">
       <header className="App-header">
+        <img src={lOGO_fiscalía} className='lOGO_fiscalía' alt=''/>
         <img src={Tittle} className='Tittle' alt=''/>
         <img src={Edad} className='Edad' alt=''/>
       </header>

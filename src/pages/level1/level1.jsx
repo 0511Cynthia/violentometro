@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
 import Thermometer from '../../img/Thermometer.png';
+import Termometro from '../../img/termometro.png';
 import Kitten from '../../components/Kitten/Kitten';
 import Words from '../../components/Words/Words';
 import Burlar from '../../img/Words1/Burlarse.png';
@@ -84,7 +85,7 @@ function Level1(){
                 <Words image={Pellizcar} targetArea={targetAreas[3]} style={{width: "23vmin", height: "4vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
                 <Words image={QC} targetArea={targetAreas[4]} style={{width: "19.5vmin", height: "9vmin"}} updatePieceStatus={updatePieceStatus} index={4}/>
                 <div className={styles.imgContainer}>
-                    <img src={Thermometer} className={styles.Thermometer} alt=''/>
+                    <img src={Termometro} className={styles.Thermometer} alt=''/>
                 </div>
             </div>
             <Kitten/>

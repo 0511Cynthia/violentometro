@@ -27,6 +27,6 @@
     justify-content: flex-end;
 }
 .Thermometer{ 
-    padding-bottom: .2%;
-    width: 34vh;  
+    width: 30vh; 
+    height: 97vh; 
 }
