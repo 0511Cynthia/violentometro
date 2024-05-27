@@ -93,14 +93,14 @@ function Level3(){
                 <img src={Hp} className={styles.Hp} alt=''/>
                 <BtnVerificar onClick={checkPiecesPlacement}/>
             </div>
+            {/* <Lbls/>
             <Lbls/>
             <Lbls/>
             <Lbls/>
             <Lbls/>
             <Lbls/>
             <Lbls/>
-            <Lbls/>
-            <Lbls/>
+            <Lbls/> */}
             {winVisible && <Win />}
             {/* {loseVisible && <Lose />} */}
             <div className={styles.columnContainer}>
