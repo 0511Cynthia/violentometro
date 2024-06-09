@@ -11,11 +11,7 @@ export default function Kitten({ onClick }){
                 <img src={Cat} className={styles.video} alt=''/>
             </picture>   
             <Sign/>
-            <div className={styles.btnContainer}>
-                <button type="submit" className={styles} onClick={onClick}>                
-                    <img src={Next} className={styles.Next} alt=''/>
-                </button>
-            </div>
+           
             
         </div>
     )
