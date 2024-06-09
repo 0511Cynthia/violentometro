@@ -31,8 +31,6 @@ function Level3() {
     ];
     const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
-    const [winVisible, setWinVisible] = useState(false);
-    const [loseVisible, setLoseVisible] = useState(false);
     const [kittenVisible, setKittenVisible] = useState(true);
     const [open, setOpen] = useState(false);
 
@@ -62,7 +60,6 @@ function Level3() {
             }
         });
         if (piecesNotInPlace === 0) {
-            setWinVisible(true);
             setKittenVisible(false);
             setOpen(true);
         } else {
@@ -76,7 +73,6 @@ function Level3() {
             toggleHeartVisibility(firstVisibleHeartIndex);
         }
         if (heartVisibility.filter(visible => visible).length === 1) {
-            setLoseVisible(true);
             setOpen(true);
         }
     };
@@ -98,25 +94,10 @@ function Level3() {
                 <img src={Hp} className={styles.Hp} alt='' />
                 <BtnVerificar onClick={checkPiecesPlacement} />
             </div>
-<<<<<<< HEAD
             <Modales open={open} 
             onClose={handleClose} 
-            // winVisible={winVisible} 
             />
             
-            {/* {winVisible && <Win />} */}
-=======
-            {/* <Lbls/>
-            <Lbls/>
-            <Lbls/>
-            <Lbls/>
-            <Lbls/>
-            <Lbls/>
-            <Lbls/>
-            <Lbls/> */}
-            {winVisible && <Win />}
->>>>>>> 51248f02e4992354866fc4503bc7c9368e10e0c4
-            {/* {loseVisible && <Lose />} */}
             <div className={styles.columnContainer}>
                 <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{ width: "18vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={0} />
                 <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} style={{ width: "14vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={1} />
