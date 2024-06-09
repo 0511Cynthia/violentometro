@@ -98,12 +98,24 @@ function Level3() {
                 <img src={Hp} className={styles.Hp} alt='' />
                 <BtnVerificar onClick={checkPiecesPlacement} />
             </div>
+<<<<<<< HEAD
             <Modales open={open} 
             onClose={handleClose} 
             // winVisible={winVisible} 
             />
             
             {/* {winVisible && <Win />} */}
+=======
+            {/* <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/>
+            <Lbls/> */}
+            {winVisible && <Win />}
+>>>>>>> 51248f02e4992354866fc4503bc7c9368e10e0c4
             {/* {loseVisible && <Lose />} */}
             <div className={styles.columnContainer}>
                 <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{ width: "18vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={0} />
