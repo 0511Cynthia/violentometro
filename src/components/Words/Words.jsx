@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Words.module.css';
 
 export default function Word({image, targetArea, id, updatePieceStatus, index, style}){
-    const area = {minX: -850, minY: 110, maxX: -100, maxY: 400 };
+    const area = {minX: -950, minY: 110, maxX: -350, maxY: 400 };
     const initialPositionX = Math.random() * (area.maxX - area.minX) + area.minX;
     const initialPositionY = Math.random() * (area.maxY - area.minY) + area.minY;
     const [position, setPosition] = useState({ x: initialPositionX, y: initialPositionY });
@@ -18,7 +18,6 @@ export default function Word({image, targetArea, id, updatePieceStatus, index, s
         if (dragging) {
             const newX = e.clientX - initialX;
             const newY = e.clientY - initialY;
-            // setPosition({ x: newX, y: newY });
             console.log("x: "+newX, "y:"+newY);
 
             if (newX <= -150) {

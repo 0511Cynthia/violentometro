@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
 import styles from './Level3.module.css';
@@ -15,9 +15,21 @@ import Amenazar from '../../img/Words3/Amenazar.png';
 import Violar from '../../img/Words3/Violar.png';
 import Matar from '../../img/Words3/Matar.png';
 import BtnVerificar from '../../components/Verificar/btnVerificar';
-import Modales from '../../components/Modales/Modales';
+import Modal from '../../components/Modales/Modales';
 
 function Level3() {
+    const words = [
+        'Matar',
+        'Violar',
+        'Amenazar',
+        'Sextorción',
+        'Golpear',
+        'Prohibir', 
+        'Stalkear',
+        'Celar',
+        'Mentir'     
+    ];
+
     const targetAreas = [
         { minX: -165, minY: 545, maxX: -150, maxY: 560 },
         { minX: -165, minY: 480, maxX: -150, maxY: 490 },
@@ -29,10 +41,12 @@ function Level3() {
         { minX: -165, minY: 115, maxX: -150, maxY: 135 },
         { minX: -165, minY: 20, maxX: -150, maxY: 50 }
     ];
+
     const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
     const [kittenVisible, setKittenVisible] = useState(true);
     const [open, setOpen] = useState(false);
+    const [inputWords, setInputWords] = useState(Array(words.length).fill('')); // Estado para almacenar las palabras ingresadas
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -50,18 +64,23 @@ function Level3() {
         });
     };
 
+    const handleInputChange = (index, event) => {
+        const newInputWords = [...inputWords];
+        newInputWords[index] = event.target.value;
+        setInputWords(newInputWords);
+    };
+
     const checkPiecesPlacement = () => {
         let piecesNotInPlace = 0;
-        piecesInPlace.forEach((piece, index) => {
-            if (piece) {
-                console.log(`La pieza ${index + 1} está en su lugar`);
+        inputWords.forEach((inputWord, index) => {
+            if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
+                console.log(`El input ${index + 1} contiene la palabra correcta: ${inputWord}`);
             } else {
                 piecesNotInPlace++;
             }
         });
         if (piecesNotInPlace === 0) {
-            setKittenVisible(false);
-            setOpen(true);
+            console.log("Ganaste");
         } else {
             lostALife();
         }
@@ -94,10 +113,17 @@ function Level3() {
                 <img src={Hp} className={styles.Hp} alt='' />
                 <BtnVerificar onClick={checkPiecesPlacement} />
             </div>
-            <Modales open={open} 
-            onClose={handleClose} 
-            />
-            
+            <Modal open={open} onClose={handleClose} />
+            <div className={styles.inputsContainer}>
+                {words.map((word, index) => (
+                    <input
+                        key={index}
+                        type="text"
+                        value={inputWords[index]}
+                        onChange={(event) => handleInputChange(index, event)}
+                    />
+                ))}
+            </div>
             <div className={styles.columnContainer}>
                 <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{ width: "18vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={0} />
                 <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} style={{ width: "14vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={1} />
@@ -113,9 +139,8 @@ function Level3() {
                 </div>
             </div>
             {kittenVisible && <Kitten />}
-            
         </div>
-    )
+    );
 }
 
 export default Level3;
