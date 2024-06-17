@@ -12,7 +12,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr
 }
-
+.audio-button {
+  font-size: 120%;
+  background-color: #dfdbcb;
+  width: 6%;
+  height: 12%;
+  border-radius: 5%;
+}
 .Tittle{
   height: 35vmin;
   pointer-events:none;

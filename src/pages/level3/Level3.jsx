@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
 import styles from './Level3.module.css';
@@ -16,18 +17,14 @@ import Violar from '../../img/Words3/Violar.png';
 import Matar from '../../img/Words3/Matar.png';
 import BtnVerificar from '../../components/Verificar/btnVerificar';
 import Modal from '../../components/Modales/Modales';
+import ModalWin from '../../components/Modales/ModalWin';
 
 function Level3() {
+    const navigate = useNavigate();
+
     const words = [
-        'Matar',
-        'Violar',
-        'Amenazar',
-        'Sextorción',
-        'Golpear',
-        'Prohibir', 
-        'Stalkear',
-        'Celar',
-        'Mentir'     
+        'Matar', 'Violar', 'Amenazar', 'Sextorción', 'Golpear',
+        'Prohibir', 'Stalkear', 'Celar', 'Mentir'
     ];
 
     const targetAreas = [
@@ -46,7 +43,8 @@ function Level3() {
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
     const [kittenVisible, setKittenVisible] = useState(true);
     const [open, setOpen] = useState(false);
-    const [inputWords, setInputWords] = useState(Array(words.length).fill('')); // Estado para almacenar las palabras ingresadas
+    const [openWin, setOpenWin] = useState(false);
+    const [inputWords, setInputWords] = useState(Array(words.length).fill(''));
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -80,7 +78,7 @@ function Level3() {
             }
         });
         if (piecesNotInPlace === 0) {
-            console.log("Ganaste");
+            setOpenWin(true);
         } else {
             lostALife();
         }
@@ -96,8 +94,16 @@ function Level3() {
         }
     };
 
+    const toStart = () => {
+        navigate("/")
+    }
+
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleCloseWin = () => {
+        setOpenWin(false);
     };
 
     return (
@@ -113,7 +119,8 @@ function Level3() {
                 <img src={Hp} className={styles.Hp} alt='' />
                 <BtnVerificar onClick={checkPiecesPlacement} />
             </div>
-            <Modal open={open} onClose={handleClose} />
+            <Modal open={open} onClose={toStart} />
+            <ModalWin open={openWin} onClose={toStart} />
             <div className={styles.inputsContainer}>
                 {words.map((word, index) => (
                     <input

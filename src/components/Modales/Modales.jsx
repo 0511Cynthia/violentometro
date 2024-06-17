@@ -5,9 +5,9 @@ import closeIcon from "../../img/goHome.png";
 import agreeIcon from "../../img/tryAgain.png";
 import styles from "./Modal.module.css";
 
-export default function BootstrapModal({ open, onClose }) {
+export default function BootstrapModal({ open, onClose}) {
   return (
-    <Modal show={open} onHide={onClose} centered className={styles.content}>
+    <Modal show={open} centered className={styles.content}>
       <Modal.Body className={styles.ImgContent}>
         <Lose />
       </Modal.Body>
