@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
-import Thermometer from '../../img/Thermometer.png';
 import Termometro from '../../img/termometro.png';
 import Kitten from '../../components/Kitten/Kitten';
 import Words from '../../components/Words/Words';
@@ -11,20 +11,21 @@ import Golpear from '../../img/Words1/Golpear.png';
 import Pellizcar from '../../img/Words1/Pellizcar.png'; 
 import QC from '../../img/Words1/QuitarCosas.png'; 
 import styles from './level1.module.css';
-// import btnVerificar from '../../components/Verificar/btnVerificar';
-
+import BtnVerificar from '../../components/Verificar/btnVerificar';
+import Modal from '../../components/Modales/Modales';
+import ModalWin from '../../components/Modales/ModalWin';
 
 function Level1(){
-    const targetAreas = [
-        {minX: -160, minY: 545, maxX: -150, maxY: 555},
-        {minX: -160, minY: 480, maxX: -150, maxY: 490},
-        {minX: -160, minY: 425, maxX: -150, maxY: 440},
-        {minX: -160, minY: 360, maxX: -150, maxY: 370},
-        {minX: -160, minY: 295, maxX: -150, maxY: 325}
-    ]
+    const navigate = useNavigate();
 
-    const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
+    const words = [
+        'Golpear', 'Empujar', 'Pellizcar', 'Quitar cosas', 'Burlarse'
+    ];
+
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
+    const [open, setOpen] = useState(false);
+    const [openWin, setOpenWin] = useState(false);
+    const [inputWords, setInputWords] = useState(Array(words.length).fill(''));
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -34,34 +35,43 @@ function Level1(){
         });
     };
 
-    const updatePieceStatus = (index, status) => {
-        setPiecesInPlace(prevState => {
-          const newState = [...prevState];
-          newState[index] = status;
-          return newState;
-        });
+
+    const handleInputChange = (index, event) => {
+        const newInputWords = [...inputWords];
+        newInputWords[index] = event.target.value;
+        setInputWords(newInputWords);
     };
 
     const checkPiecesPlacement = () => {
         let piecesNotInPlace = 0;
-        piecesInPlace.map((piece, index)=>{
-            if(piece === true){
-                console.log(`La pieza ${index+1} esta esta en su lugar`);
-            }else{
-                piecesNotInPlace++
+        inputWords.forEach((inputWord, index) => {
+            if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
+                console.log(`El input ${index + 1} contiene la palabra correcta: ${inputWord}`);
+            } else {
+                piecesNotInPlace++;
             }
-        })
-        lostALife(piecesNotInPlace);
+        });
+        if (piecesNotInPlace === 0) {
+            setOpenWin(true);
+        } else {
+            lostALife();
+        }
+    };
+
+    const lostALife = () => {
+        const firstVisibleHeartIndex = heartVisibility.indexOf(true);
+        if (firstVisibleHeartIndex !== -1) {
+            toggleHeartVisibility(firstVisibleHeartIndex);
+        }
+        if (heartVisibility.filter(visible => visible).length === 1) {
+            setOpen(true);
+        }
+    };
+
+    const toStart = () => {
+        navigate("/")
     }
 
-    const lostALife = (pieces) =>{
-        if(pieces>0){
-            const firstVisibleHeartIndex = heartVisibility.indexOf(true);
-            if (firstVisibleHeartIndex !== -1) {
-                toggleHeartVisibility(firstVisibleHeartIndex);
-            }
-        }
-    }
     return(
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
@@ -77,13 +87,27 @@ function Level1(){
                         )
                 ))}
                 <img src={Hp} className={styles.Hp} alt=''/>
+                <BtnVerificar onClick={checkPiecesPlacement} />
+            </div>
+            <Modal open={open} onClose={toStart} />
+            <ModalWin open={openWin} onClose={toStart} />
+            <div className={styles.inputsContainer}>
+                {words.map((word, index) => (
+                    <input
+                        key={index}
+                        type="text"
+                        value={inputWords[index]}
+                        onChange={(event) => handleInputChange(index, event)}
+                        placeholder='Escribe aquí'
+                    />
+                ))}
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Burlar} targetArea={targetAreas[0]} style={{width: "23vmin", height: "4vmin"}}  updatePieceStatus={updatePieceStatus} index={0}/>
-                <Words image={Empujar} targetArea={targetAreas[1]} style={{width: "23vmin", height: "5.2vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
-                <Words image={Golpear} targetArea={targetAreas[2]}  style={{width: "20.8vmin", height: "5.2vmin"}} updatePieceStatus={updatePieceStatus} index={2}/>
-                <Words image={Pellizcar} targetArea={targetAreas[3]} style={{width: "23vmin", height: "4vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
-                <Words image={QC} targetArea={targetAreas[4]} style={{width: "19.5vmin", height: "9vmin"}} updatePieceStatus={updatePieceStatus} index={4}/>
+                <Words image={Burlar} style={{width: "23vmin", height: "4vmin"}} index={0}/>
+                <Words image={Empujar} style={{width: "23vmin", height: "5.2vmin"}} index={1}/>
+                <Words image={Golpear} style={{width: "20.8vmin", height: "5.2vmin"}} index={2}/>
+                <Words image={Pellizcar} style={{width: "23vmin", height: "4vmin"}} index={3}/>
+                <Words image={QC} style={{width: "19.5vmin", height: "9vmin"}} index={4}/>
                 <div className={styles.imgContainer}>
                     <img src={Termometro} className={styles.Thermometer} alt=''/>
                 </div>
