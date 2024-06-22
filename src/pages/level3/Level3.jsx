@@ -27,21 +27,7 @@ function Level3() {
         'Prohibir', 'Stalkear', 'Celar', 'Mentir'
     ];
 
-    const targetAreas = [
-        { minX: -165, minY: 545, maxX: -150, maxY: 560 },
-        { minX: -165, minY: 480, maxX: -150, maxY: 490 },
-        { minX: -165, minY: 425, maxX: -150, maxY: 440 },
-        { minX: -165, minY: 355, maxX: -150, maxY: 370 },
-        { minX: -165, minY: 295, maxX: -150, maxY: 325 },
-        { minX: -170, minY: 235, maxX: -150, maxY: 260 },
-        { minX: -165, minY: 180, maxX: -150, maxY: 200 },
-        { minX: -165, minY: 115, maxX: -150, maxY: 135 },
-        { minX: -165, minY: 20, maxX: -150, maxY: 50 }
-    ];
-
-    const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
-    const [kittenVisible, setKittenVisible] = useState(true);
     const [open, setOpen] = useState(false);
     const [openWin, setOpenWin] = useState(false);
     const [inputWords, setInputWords] = useState(Array(words.length).fill(''));
@@ -50,14 +36,6 @@ function Level3() {
         setHeartVisibility(prevState => {
             const newState = [...prevState];
             newState[index] = !newState[index];
-            return newState;
-        });
-    };
-
-    const updatePieceStatus = (index, status) => {
-        setPiecesInPlace(prevState => {
-            const newState = [...prevState];
-            newState[index] = status;
             return newState;
         });
     };
@@ -98,14 +76,6 @@ function Level3() {
         navigate("/")
     }
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleCloseWin = () => {
-        setOpenWin(false);
-    };
-
     return (
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
@@ -128,24 +98,25 @@ function Level3() {
                         type="text"
                         value={inputWords[index]}
                         onChange={(event) => handleInputChange(index, event)}
+                        placeholder='Escribe aquí'
                     />
                 ))}
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Mentir} targetArea={targetAreas[0]} id={`word-${1}`} style={{ width: "18vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={0} />
-                <Words image={Celar} targetArea={targetAreas[1]} id={`word-${2}`} style={{ width: "14vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={1} />
-                <Words image={Prohibir} targetArea={targetAreas[3]} id={`word-${4}`} style={{ width: "19.5vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={3} />
-                <Words image={Stalkear} targetArea={targetAreas[2]} id={`word-${3}`} style={{ width: "22vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={2} />
-                <Words image={Golpear} targetArea={targetAreas[4]} id={`word-${5}`} style={{ width: "20.8vmin", height: "5.8vmin" }} updatePieceStatus={updatePieceStatus} index={4} />
-                <Words image={Sextorcion} targetArea={targetAreas[5]} id={`word-${6}`} style={{ width: "28.5vmin", height: "4.2vmin" }} updatePieceStatus={updatePieceStatus} index={5} />
-                <Words image={Amenazar} targetArea={targetAreas[6]} id={`word-${7}`} style={{ width: "23.6vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={6} />
-                <Words image={Violar} targetArea={targetAreas[7]} id={`word-${8}`} style={{ width: "18vmin", height: "4.5vmin" }} updatePieceStatus={updatePieceStatus} index={7} />
-                <Words image={Matar} targetArea={targetAreas[8]} id={`word-${9}`} style={{ width: "18vmin", height: "4.2vmin" }} updatePieceStatus={updatePieceStatus} index={8} />
+                <Words image={Mentir} id={`word-${1}`} style={{ width: "18vmin", height: "4.5vmin" }} index={0} />
+                <Words image={Celar} id={`word-${2}`} style={{ width: "14vmin", height: "4.5vmin" }} index={1} />
+                <Words image={Prohibir} id={`word-${4}`} style={{ width: "19.5vmin", height: "4.5vmin" }} index={3} />
+                <Words image={Stalkear} id={`word-${3}`} style={{ width: "22vmin", height: "4.5vmin" }} index={2} />
+                <Words image={Golpear} id={`word-${5}`} style={{ width: "20.8vmin", height: "5.8vmin" }} index={4} />
+                <Words image={Sextorcion} id={`word-${6}`} style={{ width: "28.5vmin", height: "4.2vmin" }} index={5} />
+                <Words image={Amenazar} id={`word-${7}`} style={{ width: "23.6vmin", height: "4.5vmin" }} index={6} />
+                <Words image={Violar} id={`word-${8}`} style={{ width: "18vmin", height: "4.5vmin" }} index={7} />
+                <Words image={Matar} id={`word-${9}`} style={{ width: "18vmin", height: "4.2vmin" }} index={8} />
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt='' />
                 </div>
             </div>
-            {kittenVisible && <Kitten />}
+            <Kitten />
         </div>
     );
 }

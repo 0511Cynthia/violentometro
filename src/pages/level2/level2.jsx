@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
 import Thermometer from '../../img/Thermometer.png';
@@ -13,24 +14,26 @@ import Amenazar from '../../img/Words2/Amenazar.png';
 import Lastimar from '../../img/Words2/Lastimar.png';
 import Golpear from '../../img/Words2/Golpear.png';
 import TPI from '../../img/Words2/TocarPartesIntimas.png';
+import BtnVerificar from '../../components/Verificar/btnVerificar';
+import Modal from '../../components/Modales/Modales';
+import ModalWin from '../../components/Modales/ModalWin';
 
 import styles from './level2.module.css';
 
 function Level2(){
-    const targetAreas = [
-        {minX: -170, minY: 545, maxX: -150, maxY: 555},
-        {minX: -170, minY: 480, maxX: -150, maxY: 500},
-        {minX: -170, minY: 425, maxX: -150, maxY: 435},
-        {minX: -170, minY: 355, maxX: -150, maxY: 375},
-        {minX: -170, minY: 295, maxX: -150, maxY: 320},
-        {minX: -170, minY: 235, maxX: -150, maxY: 260},
-        {minX: -170, minY: 180, maxX: -150, maxY: 200},
-        {minX: -170, minY: 115, maxX: -150, maxY: 135},
-        {minX: -170, minY: 20, maxX: -150, maxY: 55}
-    ]
+    const navigate = useNavigate();
 
-    const [piecesInPlace, setPiecesInPlace] = useState(Array(targetAreas.length).fill(false));
+    const words = [
+        'Tocar partes intimas', 'Golpear', 'Lastimar', 'Amenazar', 
+        'Bromas pesadas', 'Destruir cosas', 'Excluir',
+        'Apodos', 'Esconder cosas'
+    ];
+
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
+    const [open, setOpen] = useState(false);
+    const [openWin, setOpenWin] = useState(false);
+    const [inputWords, setInputWords] = useState(Array(words.length).fill(''));
+
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -40,60 +43,78 @@ function Level2(){
         });
     };
 
-    const updatePieceStatus = (index, status) => {
-        setPiecesInPlace(prevState => {
-          const newState = [...prevState];
-          newState[index] = status;
-          return newState;
-        });
+    const handleInputChange = (index, event) => {
+        const newInputWords = [...inputWords];
+        newInputWords[index] = event.target.value;
+        setInputWords(newInputWords);
     };
 
     const checkPiecesPlacement = () => {
         let piecesNotInPlace = 0;
-        piecesInPlace.map((piece, index)=>{
-            if(piece === true){
-                console.log(`La pieza ${index+1} esta esta en su lugar`);
-            }else{
-                piecesNotInPlace++
+        inputWords.forEach((inputWord, index) => {
+            if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
+                console.log(`El input ${index + 1} contiene la palabra correcta: ${inputWord}`);
+            } else {
+                piecesNotInPlace++;
             }
-        })
-        lostALife(piecesNotInPlace);
+        });
+        if (piecesNotInPlace === 0) {
+            setOpenWin(true);
+        } else {
+            lostALife();
+        }
+    };
+
+    const lostALife = () => {
+        const firstVisibleHeartIndex = heartVisibility.indexOf(true);
+        if (firstVisibleHeartIndex !== -1) {
+            toggleHeartVisibility(firstVisibleHeartIndex);
+        }
+        if (heartVisibility.filter(visible => visible).length === 1) {
+            setOpen(true);
+        }
+    };
+
+    const toStart = () => {
+        navigate("/")
     }
 
-    const lostALife = (pieces) =>{
-        if(pieces>0){
-            const firstVisibleHeartIndex = heartVisibility.indexOf(true);
-            if (firstVisibleHeartIndex !== -1) {
-                toggleHeartVisibility(firstVisibleHeartIndex);
-            }
-        }
-    }
     return(
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
-            {heartVisibility.map((visible, index) => (
+                {heartVisibility.map((visible, index) => (
                     visible && (
-                        <img
-                            key={index}
-                            src={Heart}
-                            className={styles.Heart}
-                            style={{width: "15vh", height: "15vh"}}
+                        <img key={index} src={Heart} className={styles.Heart} style={{ width: "15vh", height: "15vh" }}
                             alt=''
                         />
                     )
                 ))}
                 <img src={Hp} className={styles.Hp} alt=''/>
+                <BtnVerificar onClick={checkPiecesPlacement} />
+            </div>
+            <Modal open={open} onClose={toStart} />
+            <ModalWin open={openWin} onClose={toStart} />
+            <div className={styles.inputsContainer}>
+                {words.map((word, index) => (
+                    <input
+                        key={index}
+                        type="text"
+                        value={inputWords[index]}
+                        onChange={(event) => handleInputChange(index, event)}
+                        placeholder='Escribe aquí'
+                    />
+                ))}
             </div>
             <div className={styles.columnContainer}>
-                <Words image={EC} targetArea={targetAreas[0]}  style={{width: "23.6vmin", height: "8.2vmin"}} updatePieceStatus={updatePieceStatus} index={0}/>
-                <Words image={Apodos} targetArea={targetAreas[1]} style={{width: "20.8vmin", height: "5.8vmin"}} updatePieceStatus={updatePieceStatus} index={1}/>
-                <Words image={Excluir} targetArea={targetAreas[2]} style={{width: "19.2vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={2}/>
-                <Words image={DC} targetArea={targetAreas[3]} style={{width: "20.8vmin", height: "9vmin"}} updatePieceStatus={updatePieceStatus} index={3}/>
-                <Words image={BP} targetArea={targetAreas[4]} style={{width: "20.8vmin", height: "8.2vmin"}} updatePieceStatus={updatePieceStatus} index={4}/>
-                <Words image={Amenazar} targetArea={targetAreas[5]}  style={{width: "23.6vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={5}/>
-                <Words image={Lastimar} targetArea={targetAreas[6]} style={{width: "23.6vmin", height: "4.5vmin"}} updatePieceStatus={updatePieceStatus} index={6}/>
-                <Words image={Golpear} targetArea={targetAreas[7]} style={{width: "20.8vmin", height: "5.8vmin"}} updatePieceStatus={updatePieceStatus} index={7}/>
-                <Words image={TPI} targetArea={targetAreas[8]} style={{width: "30vmin", height: "9vmin"}} updatePieceStatus={updatePieceStatus} index={8}/>
+                <Words image={EC} style={{width: "23.6vmin", height: "8.2vmin"}} index={0}/>
+                <Words image={Apodos} style={{width: "20.8vmin", height: "5.8vmin"}} index={1}/>
+                <Words image={Excluir} tyle={{width: "19.2vmin", height: "4.5vmin"}} index={2}/>
+                <Words image={DC} style={{width: "20.8vmin", height: "9vmin"}} index={3}/>
+                <Words image={BP} style={{width: "20.8vmin", height: "8.2vmin"}} index={4}/>
+                <Words image={Amenazar} style={{width: "23.6vmin", height: "4.5vmin"}} index={5}/>
+                <Words image={Lastimar} style={{width: "23.6vmin", height: "4.5vmin"}} index={6}/>
+                <Words image={Golpear} style={{width: "20.8vmin", height: "5.8vmin"}} index={7}/>
+                <Words image={TPI} style={{width: "30vmin", height: "9vmin"}} index={8}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>
