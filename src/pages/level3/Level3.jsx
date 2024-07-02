@@ -23,7 +23,7 @@ function Level3() {
     const navigate = useNavigate();
 
     const words = [
-        'Abuso', 'Cyberbulling', 'Acoso', 'Control', 'Celar',
+        'Abuso', 'Cyberbullying', 'Acoso', 'Control', 'Celar',
         'Chantajes', 'Bromas hirientes', 'Ignorar', 'Insultos'
     ];
 
@@ -91,6 +91,21 @@ function Level3() {
             </div>
             <Modal open={open} onClose={toStart} />
             <ModalWin open={openWin} onClose={toStart} />
+            <div className={styles.wordsContainer}>
+                <div className={styles.column}>
+                    <Words image={Celar} id={`word-2`} style={{ width: "14vmin", height: "5vmin" }} index={1} />
+                    <Words image={BH} id={`word-3`} style={{ width: "35vmin", height: "5.5vmin" }} index={2} />
+                    <Words image={Chantajes} id={`word-5`} style={{ width: "20.8vmin", height: "5.8vmin" }} index={4} />
+                    <Words image={Acoso} id={`word-8`} style={{ width: "16vmin", height: "5vmin" }} index={7} />
+                    <Words image={Abuso} id={`word-9`} style={{ width: "20.8vmin", height: "5.8vmin" }} index={8} />
+                </div>
+                <div className={styles.column}>
+                    <Words image={Insultos} id={`word-1`} style={{ width: "18vmin", height: "4.5vmin" }} index={0} />
+                    <Words image={Ignorar} id={`word-4`} style={{ width: "23vmin", height: "6.2vmin" }} index={3} />
+                    <Words image={CB} id={`word-6`} style={{ width: "30.5vmin", height: "6vmin" }} index={5} />
+                    <Words image={Control} id={`word-7`} style={{ width: "23.6vmin", height: "4.5vmin" }} index={6} />
+                </div>
+            </div>
             <div className={styles.inputsContainer}>
                 {words.map((word, index) => (
                     <input
@@ -103,15 +118,6 @@ function Level3() {
                 ))}
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Insultos} id={`word-${1}`} style={{ width: "18vmin", height: "4.5vmin" }} index={0} />
-                <Words image={Celar} id={`word-${2}`} style={{ width: "14vmin", height: "5vmin" }} index={1} />
-                <Words image={BH} style={{width: "35vmin", height: "5.5vmin"}} index={4}/>
-                <Words image={Ignorar} style={{width: "23vmin", height: "6.2vmin"}} index={0}/>
-                <Words image={Chantajes} id={`word-${5}`} style={{ width: "20.8vmin", height: "5.8vmin" }} index={4} />
-                <Words image={CB} id={`word-${6}`} style={{ width: "30.5vmin", height: "6vmin" }} index={5} />
-                <Words image={Control} id={`word-${7}`} style={{ width: "23.6vmin", height: "4.5vmin" }} index={6} />
-                <Words image={Acoso} style={{width: "16vmin", height: "5vmin"}} index={6}/>
-                <Words image={Abuso} style={{width: "20.8vmin", height: "5.8vmin"}} index={7}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt='' />
                 </div>

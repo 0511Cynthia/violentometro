@@ -93,6 +93,21 @@ function Level2(){
             </div>
             <Modal open={open} onClose={toStart} />
             <ModalWin open={openWin} onClose={toStart} />
+            <div className={styles.wordsContainer}>
+                <div className={styles.column}>
+                    <Words image={Ignorar} style={{width: "23vmin", height: "6.2vmin"}} index={0}/>
+                    <Words image={Apodos} style={{width: "20.8vmin", height: "5.8vmin"}} index={1}/>
+                    <Words image={Señalamientos} tyle={{width: "37vmin", height: "16vmin"}} index={2}/>
+                    <Words image={Abandono} style={{width: "20.8vmin", height: "6vmin"}} index={3}/>
+                    <Words image={BH} style={{width: "35vmin", height: "6vmin"}} index={4}/>
+                </div>
+                <div className={styles.column}>
+                    <Words image={Amenazas} style={{width: "23.6vmin", height: "4.5vmin"}} index={5}/>
+                    <Words image={Acoso} style={{width: "16vmin", height: "5vmin"}} index={6}/>
+                    <Words image={Abuso} style={{width: "20.8vmin", height: "5vmin"}} index={7}/>
+                    <Words image={VF} style={{width: "30vmin", height: "5vmin"}} index={8}/>
+                </div>
+            </div>
             <div className={styles.inputsContainer}>
                 {words.map((word, index) => (
                     <input
@@ -105,15 +120,6 @@ function Level2(){
                 ))}
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Ignorar} style={{width: "23vmin", height: "6.2vmin"}} index={0}/>
-                <Words image={Apodos} style={{width: "20.8vmin", height: "5.8vmin"}} index={1}/>
-                <Words image={Señalamientos} tyle={{width: "35vmin", height: "15vmin"}} index={2}/>
-                <Words image={Abandono} style={{width: "20.8vmin", height: "9vmin"}} index={3}/>
-                <Words image={BH} style={{width: "35vmin", height: "6vmin"}} index={4}/>
-                <Words image={Amenazas} style={{width: "23.6vmin", height: "4.5vmin"}} index={5}/>
-                <Words image={Acoso} style={{width: "16vmin", height: "5vmin"}} index={6}/>
-                <Words image={Abuso} style={{width: "20.8vmin", height: "5.8vmin"}} index={7}/>
-                <Words image={VF} style={{width: "30vmin", height: "5vmin"}} index={8}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt=''/>
                 </div>

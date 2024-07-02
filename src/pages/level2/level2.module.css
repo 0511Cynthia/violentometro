@@ -16,6 +16,22 @@
     height: 7vmin;
     padding-top: 20%;
 }
+
+.wordsContainer {
+    position: absolute;
+    top: 28%;
+    margin-left: 4%;
+    display: flex;
+    flex-direction: row;
+    gap: 50vh;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 9vh;
+}
+
 .inputsContainer {
     position: absolute;
     top: 15%;

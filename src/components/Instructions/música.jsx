@@ -1,25 +1,37 @@
-// AudioButton1.js
-import React, { useRef, useState } from 'react';
-import styles from './música.module.css'
+import React, { useRef, useEffect, useState } from 'react';
+import styles from './música.module.css';
 
-const Instructions = ({ audioSrc, label }) => {
+const Instructions = ({ audioSrc, label, setPlayingAudio, playingAudio }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (playingAudio !== audioRef) {
+      setIsPlaying(false);
+    }
+  }, [playingAudio]);
 
   const toggleAudio = () => {
     if (isPlaying) {
       audioRef.current.pause();
+      setIsPlaying(false);
+      setPlayingAudio(null);
     } else {
+      if (playingAudio && playingAudio !== audioRef) {
+        playingAudio.current.pause();
+        playingAudio.current.currentTime = 0;
+      }
       audioRef.current.play().catch(error => {
         console.error('Error playing audio:', error);
       });
+      setPlayingAudio(audioRef);
+      setIsPlaying(true);
     }
-    setIsPlaying(!isPlaying);
-  }
+  };
 
   return (
     <div className={styles.container}>
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef}>
         <source src={audioSrc} type="audio/mpeg" />
         Tu navegador no soporta el elemento de audio.
       </audio>
@@ -28,6 +40,6 @@ const Instructions = ({ audioSrc, label }) => {
       </button>
     </div>
   );
-}
+};
 
 export default Instructions;

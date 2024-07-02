@@ -8,14 +8,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent !important; /* Fondo transparente para el contenido */
+    /* Fondo transparente para el contenido */
     flex-direction: column;
     text-align: center;
     padding: 2%;
   }
   
   .footer {
-    background-color: #f3edd1 !important; /* Fondo del mismo color que la página */
+    background-color: #f3edd1!important; /* Fondo del mismo color que la página */
     border: none !important; /* Sin borde en el pie de página */
   }
   

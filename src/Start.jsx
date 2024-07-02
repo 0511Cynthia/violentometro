@@ -11,12 +11,17 @@ import Kid from './img/kid.gif';
 import lOGO_fiscalía from './img/lOGO_fiscalía.png';
 import './Start.css';
 import Btn from './components/Btns/Btn';
+import Contactos from '../src/multimedios/Contactos.mp3';
+import Niveles from '../src/multimedios/Niveles.mp3';
 import Music from '../src/multimedios/Music.mp3';
 
 function Start() {
   const audioRef = useRef();
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [audioIndex, setAudioIndex] = useState(0);
+
+  const audioList = [Contactos, Niveles, Music];
 
   const toLevel3 = () => {
     navigate("/level3");
@@ -30,22 +35,33 @@ function Start() {
     navigate("/level1");
   }
 
+  const playAudio = (index) => {
+    audioRef.current.src = audioList[index];
+    audioRef.current.play().catch(error => {
+      console.error('Error playing audio:', error);
+    });
+  }
+
   const toggleAudio = () => {
     if (isPlaying) {
       audioRef.current.pause();
     } else {
-      audioRef.current.play().catch(error => {
-        console.error('Error playing audio:', error);
-      });
+      playAudio(audioIndex);
     }
     setIsPlaying(!isPlaying);
   }
 
+  const nextAudio = () => {
+    setAudioIndex((prevIndex) => {
+      const newIndex = (prevIndex + 1) % audioList.length;
+      playAudio(newIndex);
+      return newIndex;
+    });
+  }
+
   return (
     <main className="main">
-      <audio ref={audioRef} loop>
-        <source src={Music} type="audio/mpeg" />
-        Tu navegador no soporta el elemento de audio.
+      <audio ref={audioRef} onEnded={nextAudio}>
       </audio>
       <header className="App-header">
         <img src={lOGO_fiscalía} className='lOGO_fiscalía' alt=''/>

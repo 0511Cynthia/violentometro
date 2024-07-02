@@ -5,11 +5,11 @@ import Hp from '../../img/Hp.png';
 import Termometro from '../../img/termometro.png';
 import Kitten from '../../components/Kitten/Kitten';
 import Words from '../../components/Words/Words';
-import Aislar from '../../img/Words1/Aislar.png';
-import DC from '../../img/Words1/Destruir cosas.png';
-import Golpear from '../../img/Words1/Golpear.png';
-import Pellizcar from '../../img/Words1/Pellizcar.png'; 
-import Morder from '../../img/Words1/Morder.png'; 
+import Aislar from '../../img/Level1/Aislar-5.png';
+import DC from '../../img/Level1/Destruir-3.png';
+import Golpear from '../../img/Level1/Golpear-2.png';
+import Pellizcar from '../../img/Level1/Pellizcar-4.png'; 
+import Morder from '../../img/Level1/Morder-1.png'; 
 import styles from './level1.module.css';
 import BtnVerificar from '../../components/Verificar/btnVerificar';
 import Modal from '../../components/Modales/ModalLose';
@@ -17,8 +17,9 @@ import ModalWin from '../../components/Modales/ModalWin';
 
 function Level1(){
     const navigate = useNavigate();
+
     const words = [
-        'Golpear', 'Pellizcar', 'Morder', 'Destruir Cosas', 'Aislar'
+        'Golpear', 'Pellizcar', 'Morder', 'Destruir cosas', 'Aislar'
     ];
 
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
@@ -70,6 +71,7 @@ function Level1(){
         navigate("/")
     }
 
+
     return(
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
@@ -89,6 +91,19 @@ function Level1(){
             </div>
             <Modal open={open} onClose={toStart} />
             <ModalWin open={openWin} onClose={toStart} />
+            <div className={styles.wordsContainer}>
+                <div className={styles.column}>
+                    <Words image={Aislar} style={{width: "30vmin", height: "20vmin"}} index={0}/>
+                    <Words image={DC} style={{width: "30vmin", height: "20vmin"}} index={1}/>
+                </div>
+                <div className={styles.column}>
+                    <Words image={Morder} style={{width: "30vmin", height: "20vmin"}} index={2}/>
+                    <Words image={Pellizcar} style={{width: "30vmin", height: "20vmin"}} index={3}/>
+                </div>
+                <div className={styles.column}>
+                    <Words image={Golpear} style={{width: "30vmin", height: "20vmin"}} index={4}/>
+                </div>
+            </div>
             <div className={styles.inputsContainer}>
                 {words.map((word, index) => (
                     <input
@@ -101,11 +116,6 @@ function Level1(){
                 ))}
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Aislar} style={{width: "20vmin", height: "5.5vmin"}} index={0}/>
-                <Words image={DC} style={{width: "35vmin", height: "5.5vmin"}} index={1}/>
-                <Words image={Golpear} style={{width: "25.2vmin", height: "6.5vmin"}} index={2}/>
-                <Words image={Pellizcar} style={{width: "26vmin", height: "6.5vmin"}} index={3}/>
-                <Words image={Morder} style={{width: "19.5vmin", height: "6vmin"}} index={4}/>
                 <div className={styles.imgContainer}>
                     <img src={Termometro} className={styles.Thermometer} alt=''/>
                 </div>
