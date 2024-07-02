@@ -5,21 +5,20 @@ import Hp from '../../img/Hp.png';
 import Termometro from '../../img/termometro.png';
 import Kitten from '../../components/Kitten/Kitten';
 import Words from '../../components/Words/Words';
-import Burlar from '../../img/Words1/Burlarse.png';
-import Empujar from '../../img/Words1/Empujar.png';
+import Aislar from '../../img/Words1/Aislar.png';
+import DC from '../../img/Words1/Destruir cosas.png';
 import Golpear from '../../img/Words1/Golpear.png';
 import Pellizcar from '../../img/Words1/Pellizcar.png'; 
-import QC from '../../img/Words1/QuitarCosas.png'; 
+import Morder from '../../img/Words1/Morder.png'; 
 import styles from './level1.module.css';
 import BtnVerificar from '../../components/Verificar/btnVerificar';
-import Modal from '../../components/Modales/Modales';
+import Modal from '../../components/Modales/ModalLose';
 import ModalWin from '../../components/Modales/ModalWin';
 
 function Level1(){
     const navigate = useNavigate();
-
     const words = [
-        'Golpear', 'Empujar', 'Pellizcar', 'Quitar cosas', 'Burlarse'
+        'Golpear', 'Pellizcar', 'Morder', 'Destruir Cosas', 'Aislar'
     ];
 
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
@@ -34,7 +33,6 @@ function Level1(){
             return newState;
         });
     };
-
 
     const handleInputChange = (index, event) => {
         const newInputWords = [...inputWords];
@@ -103,11 +101,11 @@ function Level1(){
                 ))}
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Burlar} style={{width: "23vmin", height: "4vmin"}} index={0}/>
-                <Words image={Empujar} style={{width: "23vmin", height: "5.2vmin"}} index={1}/>
-                <Words image={Golpear} style={{width: "20.8vmin", height: "5.2vmin"}} index={2}/>
-                <Words image={Pellizcar} style={{width: "23vmin", height: "4vmin"}} index={3}/>
-                <Words image={QC} style={{width: "19.5vmin", height: "9vmin"}} index={4}/>
+                <Words image={Aislar} style={{width: "20vmin", height: "5.5vmin"}} index={0}/>
+                <Words image={DC} style={{width: "35vmin", height: "5.5vmin"}} index={1}/>
+                <Words image={Golpear} style={{width: "25.2vmin", height: "6.5vmin"}} index={2}/>
+                <Words image={Pellizcar} style={{width: "26vmin", height: "6.5vmin"}} index={3}/>
+                <Words image={Morder} style={{width: "19.5vmin", height: "6vmin"}} index={4}/>
                 <div className={styles.imgContainer}>
                     <img src={Termometro} className={styles.Thermometer} alt=''/>
                 </div>

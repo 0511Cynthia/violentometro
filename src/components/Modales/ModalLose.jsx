@@ -11,7 +11,7 @@ export default function BootstrapModal({ open, onClose}) {
       <Modal.Body className={styles.ImgContent}>
         <Lose />
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer className={styles.footer}>
         <Button variant="secondary" onClick={onClose} className={styles.btn1}>
           <img src={closeIcon} alt="Cerrar" className={styles.icon} />
         </Button>

@@ -1,42 +1,8 @@
-import { useState } from 'react';
 import styles from './Words.module.css';
 
 export default function Word({image, id, index, style}){
-    const area = {minX: -950, minY: 110, maxX: -350, maxY: 400 };
-    const initialPositionX = Math.random() * (area.maxX - area.minX) + area.minX;
-    const initialPositionY = Math.random() * (area.maxY - area.minY) + area.minY;
-    const [position, setPosition] = useState({ x: initialPositionX, y: initialPositionY });
-    const [dragging, setDragging] = useState(false);
-    
-    const handleMouseDown = (e) => {
-        setDragging(true);
-        const initialX = e.clientX - position.x;
-        const initialY = e.clientY - position.y;
-
-        const handleMouseMove = (e) => {
-        if (dragging) {
-            const newX = e.clientX - initialX;
-            const newY = e.clientY - initialY;
-            // console.log("x: "+newX, "y:"+newY);
-
-            if (newX <= -150) {
-                setPosition({ x: newX, y: newY });
-            }
-        }
-        };
-
-        const handleMouseUp = () => {
-            setDragging(false);
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseup', handleMouseUp);
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseup', handleMouseUp);
-    };
     return(
-        <div  id={id} className={styles.Container} style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
-        onMouseDown={handleMouseDown}>
+        <div  id={id} className={styles.Container}>
             
             <picture className={styles.containerWord}>
                 <img src={image} className={styles.Word} style={style} alt=''/>

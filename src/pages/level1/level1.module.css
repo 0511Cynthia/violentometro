@@ -10,7 +10,7 @@
     align-items: start;
     color: #0b0b16;
     display: grid;
-    grid-template-columns: .1fr .1fr .1fr .1fr .1fr; 
+    grid-template-columns: repeat(5, 0.1fr); 
 }
 
 .Hp{
@@ -23,12 +23,19 @@
     margin-left: 68%;
     display: flex;
     flex-direction: column;
+    
 }
 
 .inputsContainer input{
-    font-size: 120%;
+    font-size: 20px;
     width: 80%;
-    margin-bottom: 40%;
+    margin-bottom: 26.5%;
+    border: none;
+    background-color: #d3bbe7;
+    border-radius: 5px; 
+    padding: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.5s ease; 
+    box-shadow: 0 0 0 3px rgba(110, 148, 190, 0);
 }
 .columnContainer{
     position: absolute;
@@ -42,4 +49,11 @@
 .Thermometer{ 
     width: 30vh; 
     height: 97vh; 
+}
+
+
+.inputsContainer input:focus {
+    outline: none; 
+    background-color: #9ebde0; 
+    box-shadow: 0 0 0 3px #074286a4; 
 }

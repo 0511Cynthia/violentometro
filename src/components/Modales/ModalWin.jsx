@@ -6,11 +6,11 @@ import styles from "./Modal.module.css";
 
 export default function ModalWin({ open, onClose }) {
   return (
-    <Modal show={open} centered className={styles.content}>
+    <Modal show={open} centered dialogClassName={styles.modalDialog}>
       <Modal.Body className={styles.ImgContent}>
         <img src={Win} alt="You Win" />
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer className={styles.footer}>
         <Button variant="secondary" onClick={onClose} className={styles.btn1}>
           <img src={closeIcon} alt="Cerrar" className={styles.icon} />
         </Button>

@@ -6,25 +6,25 @@ import styles from './Level3.module.css';
 import Thermometer from '../../img/Thermometer.png';
 import Kitten from '../../components/Kitten/Kitten';
 import Words from '../../components/Words/Words';
-import Mentir from '../../img/Words3/Mentir.png';
+import Insultos from '../../img/Words3/Insultos.png';
 import Celar from '../../img/Words3/Celar.png';
-import Stalkear from '../../img/Words3/Stalkear.png';
-import Prohibir from '../../img/Words3/prohibir.png';
-import Golpear from '../../img/Words3/Golpear.png';
-import Sextorcion from '../../img/Words3/Sextorcion.png';
-import Amenazar from '../../img/Words3/Amenazar.png';
-import Violar from '../../img/Words3/Violar.png';
-import Matar from '../../img/Words3/Matar.png';
+import Ignorar from '../../img/Words3/Ignorar.png';
+import BH from '../../img/Words2/Bromas hirientes.png';
+import Chantajes from '../../img/Words3/Chantajes.png';
+import CB from '../../img/Words3/Cyberbullying.png';
+import Control from '../../img/Words3/Control.png';
+import Acoso from '../../img/Words3/Acoso.png';
+import Abuso from '../../img/Words3/Abuso.png';
 import BtnVerificar from '../../components/Verificar/btnVerificar';
-import Modal from '../../components/Modales/Modales';
+import Modal from '../../components/Modales/ModalLose';
 import ModalWin from '../../components/Modales/ModalWin';
 
 function Level3() {
     const navigate = useNavigate();
 
     const words = [
-        'Matar', 'Violar', 'Amenazar', 'Sextorción', 'Golpear',
-        'Prohibir', 'Stalkear', 'Celar', 'Mentir'
+        'Abuso', 'Cyberbulling', 'Acoso', 'Control', 'Celar',
+        'Chantajes', 'Bromas hirientes', 'Ignorar', 'Insultos'
     ];
 
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
@@ -103,15 +103,15 @@ function Level3() {
                 ))}
             </div>
             <div className={styles.columnContainer}>
-                <Words image={Mentir} id={`word-${1}`} style={{ width: "18vmin", height: "4.5vmin" }} index={0} />
-                <Words image={Celar} id={`word-${2}`} style={{ width: "14vmin", height: "4.5vmin" }} index={1} />
-                <Words image={Prohibir} id={`word-${4}`} style={{ width: "19.5vmin", height: "4.5vmin" }} index={3} />
-                <Words image={Stalkear} id={`word-${3}`} style={{ width: "22vmin", height: "4.5vmin" }} index={2} />
-                <Words image={Golpear} id={`word-${5}`} style={{ width: "20.8vmin", height: "5.8vmin" }} index={4} />
-                <Words image={Sextorcion} id={`word-${6}`} style={{ width: "28.5vmin", height: "4.2vmin" }} index={5} />
-                <Words image={Amenazar} id={`word-${7}`} style={{ width: "23.6vmin", height: "4.5vmin" }} index={6} />
-                <Words image={Violar} id={`word-${8}`} style={{ width: "18vmin", height: "4.5vmin" }} index={7} />
-                <Words image={Matar} id={`word-${9}`} style={{ width: "18vmin", height: "4.2vmin" }} index={8} />
+                <Words image={Insultos} id={`word-${1}`} style={{ width: "18vmin", height: "4.5vmin" }} index={0} />
+                <Words image={Celar} id={`word-${2}`} style={{ width: "14vmin", height: "5vmin" }} index={1} />
+                <Words image={BH} style={{width: "35vmin", height: "5.5vmin"}} index={4}/>
+                <Words image={Ignorar} style={{width: "23vmin", height: "6.2vmin"}} index={0}/>
+                <Words image={Chantajes} id={`word-${5}`} style={{ width: "20.8vmin", height: "5.8vmin" }} index={4} />
+                <Words image={CB} id={`word-${6}`} style={{ width: "30.5vmin", height: "6vmin" }} index={5} />
+                <Words image={Control} id={`word-${7}`} style={{ width: "23.6vmin", height: "4.5vmin" }} index={6} />
+                <Words image={Acoso} style={{width: "16vmin", height: "5vmin"}} index={6}/>
+                <Words image={Abuso} style={{width: "20.8vmin", height: "5.8vmin"}} index={7}/>
                 <div className={styles.imgContainer}>
                     <img src={Thermometer} className={styles.Thermometer} alt='' />
                 </div>

@@ -50,7 +50,7 @@ function Start() {
       <header className="App-header">
         <img src={lOGO_fiscalía} className='lOGO_fiscalía' alt=''/>
         <button onClick={toggleAudio} className="audio-button">
-          {isPlaying ? 'Detener' : 'Música'}
+          {isPlaying ? 'Detener' : 'Información'}
         </button>
         <img src={Tittle} className='Tittle' alt=''/>
         <img src={Edad} className='Edad' alt=''/>
