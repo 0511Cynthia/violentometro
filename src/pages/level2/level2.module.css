@@ -13,8 +13,8 @@
     grid-template-columns: .1fr .1fr .1fr .1fr .1fr; 
 }
 .Hp{
-    height: 7vmin;
-    padding-top: 20%;
+    height: 10vmin;
+    padding-top: 10%;
 }
 
 .wordsContainer {
@@ -43,7 +43,7 @@
 .inputsContainer input{
     font-size: 19px;
     width: 80%;
-    margin-bottom: 9.5%;
+    margin-bottom: 14%;
     border: none;
     background-color: #d3bbe7;
     border-radius: 5px; 
