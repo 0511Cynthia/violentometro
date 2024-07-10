@@ -108,10 +108,11 @@ function Level1(){
                 {words.map((word, index) => (
                     <input
                         key={index}
-                        type="text"
+                        type="number"
+                        min="1"
+                        max="5"
                         value={inputWords[index]}
                         onChange={(event) => handleInputChange(index, event)}
-                        placeholder='Escribe aquí'
                     />
                 ))}
             </div>

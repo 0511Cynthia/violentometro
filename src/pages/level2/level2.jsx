@@ -32,7 +32,7 @@ function Level2(){
     const [open, setOpen] = useState(false);
     const [openWin, setOpenWin] = useState(false);
     const [inputWords, setInputWords] = useState(Array(words.length).fill(''));
-
+    const [correctWords, setCorrectWords] = useState(Array(words.length).fill(false));
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -50,13 +50,19 @@ function Level2(){
 
     const checkPiecesPlacement = () => {
         let piecesNotInPlace = 0;
+        const newCorrectWords = [...correctWords];
+
         inputWords.forEach((inputWord, index) => {
             if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
+                newCorrectWords[index] = true;
                 console.log(`El input ${index + 1} contiene la palabra correcta: ${inputWord}`);
             } else {
                 piecesNotInPlace++;
             }
         });
+
+        setCorrectWords(newCorrectWords);
+
         if (piecesNotInPlace === 0) {
             setOpenWin(true);
         } else {
@@ -116,6 +122,7 @@ function Level2(){
                         value={inputWords[index]}
                         onChange={(event) => handleInputChange(index, event)}
                         placeholder='Escribe aquí'
+                        disabled={correctWords[index]}
                     />
                 ))}
             </div>

@@ -12,7 +12,7 @@ export default function Kitten({ onClick }) {
   const handleSetPlayingAudio = (audioRef) => {
     if (playingAudio && playingAudio !== audioRef) {
       playingAudio.current.pause();
-      playingAudio.current.currentTime = 0; // Reset audio to start
+      playingAudio.current.currentTime = 0;
     }
     setPlayingAudio(audioRef);
   };
