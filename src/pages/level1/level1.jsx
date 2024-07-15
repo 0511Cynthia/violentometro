@@ -18,14 +18,15 @@ import ModalWin from '../../components/Modales/ModalWin';
 function Level1(){
     const navigate = useNavigate();
 
-    const words = [
-        'Golpear', 'Pellizcar', 'Morder', 'Destruir cosas', 'Aislar'
+    const numbers = [
+        2, 4, 1, 3, 5
     ];
 
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
     const [open, setOpen] = useState(false);
     const [openWin, setOpenWin] = useState(false);
-    const [inputWords, setInputWords] = useState(Array(words.length).fill(''));
+    const [inputNumbers, setInputNumbers] = useState(Array(numbers.length).fill(''));
+    const [correctNumbers, setCorrectNumbers] = useState(Array(numbers.length).fill(false));
 
     const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
@@ -36,20 +37,26 @@ function Level1(){
     };
 
     const handleInputChange = (index, event) => {
-        const newInputWords = [...inputWords];
-        newInputWords[index] = event.target.value;
-        setInputWords(newInputWords);
+        const newInputNumbers = [...inputNumbers];
+        newInputNumbers[index] = event.target.value;
+        setInputNumbers(newInputNumbers);
     };
 
     const checkPiecesPlacement = () => {
         let piecesNotInPlace = 0;
-        inputWords.forEach((inputWord, index) => {
-            if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
-                console.log(`El input ${index + 1} contiene la palabra correcta: ${inputWord}`);
+        const newCorrectNumbers = [...correctNumbers];
+
+        inputNumbers.forEach((inputNumber, index) => {
+            if (parseInt(inputNumber.trim()) === numbers[index]) {
+                console.log(`El input ${index + 1} contiene el número correcto: ${inputNumber}`);
+                newCorrectNumbers[index] = true;
             } else {
                 piecesNotInPlace++;
             }
         });
+
+        setCorrectNumbers(newCorrectNumbers);
+
         if (piecesNotInPlace === 0) {
             setOpenWin(true);
         } else {
@@ -105,14 +112,15 @@ function Level1(){
                 </div>
             </div>
             <div className={styles.inputsContainer}>
-                {words.map((word, index) => (
+                {numbers.map((word, index) => (
                     <input
                         key={index}
                         type="number"
                         min="1"
                         max="5"
-                        value={inputWords[index]}
+                        value={inputNumbers[index]}
                         onChange={(event) => handleInputChange(index, event)}
+                        disabled={correctNumbers[index]}
                     />
                 ))}
             </div>
