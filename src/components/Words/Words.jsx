@@ -1,6 +1,6 @@
 import styles from './Words.module.css';
 
-export default function Word({image, id, index, style}){
+export default function Word({image, id, style}){
     return(
         <div  id={id} className={styles.Container}>
             

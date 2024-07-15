@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
@@ -19,41 +19,46 @@ import Modal from '../../components/Modales/ModalLose';
 import ModalWin from '../../components/Modales/ModalWin';
 import styles from './level2.module.css';
 
-function Level2(){
+const wordsData = [
+    { word: 'Ignorar', image: Ignorar, style: { width: "20vmin", height: "5.8vmin" } },
+    { word: 'Apodos', image: Apodos, style: { width: "20vmin", height: "5.8vmin" } },
+    { word: 'Señalamientos', image: Señalamientos, style: { width: "30vmin", height: "5.2vmin" } },
+    { word: 'Abandono', image: Abandono, style: { width: "20vmin", height: "5vmin" } },
+    { word: 'Bromas hirientes', image: BH, style: { width: "35vmin", height: "5vmin" } },
+    { word: 'Amenazas', image: Amenazas, style: { width: "23.6vmin", height: "4.5vmin" } },
+    { word: 'Acoso', image: Acoso, style: { width: "16vmin", height: "4.5vmin" } },
+    { word: 'Abuso', image: Abuso, style: { width: "15vmin", height: "5vmin" } },
+    { word: 'Violencia Física', image: VF, style: { width: "30.5vmin", height: "4.5vmin" } }
+];
+
+function Level2() {
     const navigate = useNavigate();
-
-    const words = [
-        'Tocar partes intimas', 'Violencia Física', 'Amenazas', 'Acoso', 
-        'Abandono', 'Bromas hirientes', 'Señalamientos',
-        'Apodos', 'Ignorar'
-    ];
-
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
     const [open, setOpen] = useState(false);
     const [openWin, setOpenWin] = useState(false);
-    const [inputWords, setInputWords] = useState(Array(words.length).fill(''));
-    const [correctWords, setCorrectWords] = useState(Array(words.length).fill(false));
+    const [inputWords, setInputWords] = useState(Array(wordsData.length).fill(''));
+    const [correctWords, setCorrectWords] = useState(Array(wordsData.length).fill(false));
 
-    const toggleHeartVisibility = (index) => {
+    const toggleHeartVisibility = useCallback((index) => {
         setHeartVisibility(prevState => {
             const newState = [...prevState];
             newState[index] = !newState[index];
             return newState;
         });
-    };
+    }, []);
 
-    const handleInputChange = (index, event) => {
+    const handleInputChange = useCallback((index, event) => {
         const newInputWords = [...inputWords];
         newInputWords[index] = event.target.value;
         setInputWords(newInputWords);
-    };
+    }, [inputWords]);
 
-    const checkPiecesPlacement = () => {
+    const checkPiecesPlacement = useCallback(() => {
         let piecesNotInPlace = 0;
         const newCorrectWords = [...correctWords];
 
         inputWords.forEach((inputWord, index) => {
-            if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
+            if (inputWord.trim().toLowerCase() === wordsData[index].word.toLowerCase()) {
                 newCorrectWords[index] = true;
                 console.log(`El input ${index + 1} contiene la palabra correcta: ${inputWord}`);
             } else {
@@ -68,9 +73,10 @@ function Level2(){
         } else {
             lostALife();
         }
-    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [correctWords, inputWords]);
 
-    const lostALife = () => {
+    const lostALife = useCallback(() => {
         const firstVisibleHeartIndex = heartVisibility.indexOf(true);
         if (firstVisibleHeartIndex !== -1) {
             toggleHeartVisibility(firstVisibleHeartIndex);
@@ -78,44 +84,39 @@ function Level2(){
         if (heartVisibility.filter(visible => visible).length === 1) {
             setOpen(true);
         }
-    };
+    }, [heartVisibility, toggleHeartVisibility]);
 
-    const toStart = () => {
-        navigate("/")
-    }
+    const toStart = useCallback(() => {
+        navigate("/");
+    }, [navigate]);
 
-    return(
+    return (
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
                 {heartVisibility.map((visible, index) => (
                     visible && (
-                        <img key={index} src={Heart} className={styles.Heart} style={{ width: "15vh", height: "15vh" }}
-                            alt=''
-                        />
+                        <img key={index} src={Heart} className={styles.Heart} style={{ width: "15vh", height: "15vh" }} alt='' />
                     )
                 ))}
-                <img src={Hp} className={styles.Hp} alt=''/>
+                <img src={Hp} className={styles.Hp} alt='' />
                 <BtnVerificar onClick={checkPiecesPlacement} />
             </div>
             <Modal open={open} onClose={toStart} />
             <ModalWin open={openWin} onClose={toStart} />
             <div className={styles.wordsContainer}>
                 <div className={styles.column}>
-                    <Words image={Ignorar} style={{width: "23vmin", height: "6.2vmin"}} index={0}/>
-                    <Words image={Apodos} style={{width: "20.8vmin", height: "5.8vmin"}} index={1}/>
-                    <Words image={Señalamientos} tyle={{width: "37vmin", height: "16vmin"}} index={2}/>
-                    <Words image={Abandono} style={{width: "20.8vmin", height: "6vmin"}} index={3}/>
-                    <Words image={BH} style={{width: "35vmin", height: "6vmin"}} index={4}/>
+                    {wordsData.slice(0, 5).map((item, index) => (
+                        <Words key={index} image={item.image} style={item.style} index={index} />
+                    ))}
                 </div>
                 <div className={styles.column}>
-                    <Words image={Amenazas} style={{width: "23.6vmin", height: "4.5vmin"}} index={5}/>
-                    <Words image={Acoso} style={{width: "16vmin", height: "5vmin"}} index={6}/>
-                    <Words image={Abuso} style={{width: "20.8vmin", height: "5vmin"}} index={7}/>
-                    <Words image={VF} style={{width: "30vmin", height: "5vmin"}} index={8}/>
+                    {wordsData.slice(5).map((item, index) => (
+                        <Words key={index} image={item.image} style={item.style} index={index + 5} />
+                    ))}
                 </div>
             </div>
             <div className={styles.inputsContainer}>
-                {words.map((word, index) => (
+                {wordsData.map((item, index) => (
                     <input
                         key={index}
                         type="text"
@@ -128,12 +129,11 @@ function Level2(){
             </div>
             <div className={styles.columnContainer}>
                 <div className={styles.imgContainer}>
-                    <img src={Thermometer} className={styles.Thermometer} alt=''/>
+                    <img src={Thermometer} className={styles.Thermometer} alt='' />
                 </div>
             </div>
-            <Kitten/>
+            <Kitten />
         </div>
-    )
+    );
 }
-
 export default Level2;

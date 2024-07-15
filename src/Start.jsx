@@ -9,11 +9,12 @@ import Teen from './img/Teen.gif';
 import Baby from './img/baby.gif';
 import Kid from './img/kid.gif';
 import lOGO_fiscalía from './img/lOGO_fiscalía.png';
-import './Start.css';
+import logoUp from './img/LogoUp.png'
 import Btn from './components/Btns/Btn';
 import Contactos from '../src/multimedios/Contactos.mp3';
 import Niveles from '../src/multimedios/Niveles.mp3';
 import Music from '../src/multimedios/Music.mp3';
+import './Start.css';
 
 function Start() {
   const audioRef = useRef();
@@ -64,6 +65,7 @@ function Start() {
       <audio ref={audioRef} onEnded={nextAudio}>
       </audio>
       <header className="App-header">
+        <img src ={logoUp} className='logoUp' alt=''/>
         <img src={lOGO_fiscalía} className='lOGO_fiscalía' alt=''/>
         <button onClick={toggleAudio} className="audio-button">
           {isPlaying ? 'Detener' : 'Información'}
