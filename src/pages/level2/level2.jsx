@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
@@ -33,34 +33,39 @@ const wordsData = [
 
 function Level2() {
     const navigate = useNavigate();
+
+    const words = [
+        'Abuso', 'Violencia fisica', 'Amenazas', 'Acoso', 'Abandono',
+        'Bromas hirientes', 'Señalamientos', 'Apodos', 'Ignorar'
+    ];
+
     const [heartVisibility, setHeartVisibility] = useState([true, true, true]);
     const [open, setOpen] = useState(false);
     const [openWin, setOpenWin] = useState(false);
     const [inputWords, setInputWords] = useState(Array(wordsData.length).fill(''));
     const [correctWords, setCorrectWords] = useState(Array(wordsData.length).fill(false));
 
-    const toggleHeartVisibility = useCallback((index) => {
+    const toggleHeartVisibility = (index) => {
         setHeartVisibility(prevState => {
             const newState = [...prevState];
             newState[index] = !newState[index];
             return newState;
         });
-    }, []);
+    };
 
-    const handleInputChange = useCallback((index, event) => {
+    const handleInputChange = (index, event) => {
         const newInputWords = [...inputWords];
         newInputWords[index] = event.target.value;
         setInputWords(newInputWords);
-    }, [inputWords]);
+    };
 
-    const checkPiecesPlacement = useCallback(() => {
+    const checkPiecesPlacement = () => {
         let piecesNotInPlace = 0;
         const newCorrectWords = [...correctWords];
 
         inputWords.forEach((inputWord, index) => {
-            if (inputWord.trim().toLowerCase() === wordsData[index].word.toLowerCase()) {
+            if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
                 newCorrectWords[index] = true;
-                console.log(`El input ${index + 1} contiene la palabra correcta: ${inputWord}`);
             } else {
                 piecesNotInPlace++;
             }
@@ -73,10 +78,9 @@ function Level2() {
         } else {
             lostALife();
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [correctWords, inputWords]);
+    };
 
-    const lostALife = useCallback(() => {
+    const lostALife = () => {
         const firstVisibleHeartIndex = heartVisibility.indexOf(true);
         if (firstVisibleHeartIndex !== -1) {
             toggleHeartVisibility(firstVisibleHeartIndex);
@@ -84,11 +88,11 @@ function Level2() {
         if (heartVisibility.filter(visible => visible).length === 1) {
             setOpen(true);
         }
-    }, [heartVisibility, toggleHeartVisibility]);
+    };
 
-    const toStart = useCallback(() => {
-        navigate("/");
-    }, [navigate]);
+    const toStart = () => {
+        navigate("/")
+    }
 
     return (
         <div className={styles.Container}>

@@ -54,7 +54,6 @@ function Level3() {
         inputWords.forEach((inputWord, index) => {
             if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
                 newCorrectWords[index] = true;
-                console.log(`El input ${index + 1} contiene la palabra correcta: ${inputWord}`);
             } else {
                 piecesNotInPlace++;
             }
