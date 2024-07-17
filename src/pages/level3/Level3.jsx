@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Heart from '../../img/Heart.png';
 import Hp from '../../img/Hp.png';
+import styles from './Level3.module.css';
 import Thermometer from '../../img/Thermometer.png';
 import Kitten from '../../components/Kitten/Kitten';
 import Words from '../../components/Words/Words';
-import BtnVerificar from '../../components/Verificar/btnVerificar';
-import Modal from '../../components/Modales/ModalLose';
-import ModalWin from '../../components/Modales/ModalWin';
-import styles from './Level3.module.css';
-
 import Insultos from '../../img/Words3/Insultos.png';
 import Celar from '../../img/Words3/Celar.png';
 import Ignorar from '../../img/Words3/Ignorar.png';
@@ -19,6 +15,9 @@ import CB from '../../img/Words3/Cyberbullying.png';
 import Control from '../../img/Words3/Control.png';
 import Acoso from '../../img/Words3/Acoso.png';
 import Abuso from '../../img/Words3/Abuso.png';
+import BtnVerificar from '../../components/Verificar/btnVerificar';
+import Modal from '../../components/Modales/ModalLose';
+import ModalWin from '../../components/Modales/ModalWin';
 
 function Level3() {
     const navigate = useNavigate();
@@ -55,6 +54,7 @@ function Level3() {
         inputWords.forEach((inputWord, index) => {
             if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
                 newCorrectWords[index] = true;
+                console.log(`El input ${index + 1} contiene la palabra correcta: ${inputWord}`);
             } else {
                 piecesNotInPlace++;
             }
@@ -80,15 +80,17 @@ function Level3() {
     };
 
     const toStart = () => {
-        navigate("/");
-    };
+        navigate("/")
+    }
 
     return (
         <div className={styles.Container}>
             <div className={styles.AppHeader}>
                 {heartVisibility.map((visible, index) => (
                     visible && (
-                        <img key={index} src={Heart} className={styles.Heart} style={{ width: "15vh", height: "15vh" }} alt='' />
+                        <img key={index} src={Heart} className={styles.Heart} style={{ width: "15vh", height: "15vh" }}
+                            alt=''
+                        />
                     )
                 ))}
                 <img src={Hp} className={styles.Hp} alt='' />
