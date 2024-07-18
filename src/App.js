@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Start from './Start';
-import Level3 from '../src/pages/level3/Level3';
-import Level2 from '../src/pages/level2/level2';
-import Level1 from '../src/pages/level1/level1';
+import Start from './Start.jsx';
+import Level3 from '../src/pages/level3/Level3.jsx';
+import Level2 from '../src/pages/level2/level2.jsx';
+import Level1 from '../src/pages/level1/level1.jsx';
 
 function App() {
     return (

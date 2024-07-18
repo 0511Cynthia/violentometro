@@ -2,6 +2,8 @@
   "name": "violentometro",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
+  "type": "module",
   "dependencies": {
     "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.24.4",
@@ -19,7 +21,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "dist": "npm run build"
+    "dist": "npm run build",
+    "electron-dev": "concurrently \"npm:start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-pack": "react-scripts build && electron-builder"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +50,15 @@
     "electron-builder": "^24.13.3",
     "electron-is-dev": "^3.0.1",
     "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.example.myapp",
+    "files": [
+      "build/**/*",
+      "public/electron.js"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }
