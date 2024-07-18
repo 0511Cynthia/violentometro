@@ -38,20 +38,24 @@ function Level1(){
         const newInputNumbers = [...inputNumbers];
         newInputNumbers[index] = event.target.value;
         setInputNumbers(newInputNumbers);
+        
     };
 
     const checkPiecesPlacement = () => {
         let piecesNotInPlace = 0;
         const newCorrectNumbers = [...correctNumbers];
+        const newInputNumbers = [...inputNumbers];
 
         inputNumbers.forEach((inputNumber, index) => {
             if (parseInt(inputNumber) === numbers[index]) {
                 newCorrectNumbers[index] = true;
             } else {
+                newInputNumbers[index] = '';
                 piecesNotInPlace++;
             }
         });
 
+        setInputNumbers(newInputNumbers);
         setCorrectNumbers(newCorrectNumbers);
 
         if (piecesNotInPlace === 0) {

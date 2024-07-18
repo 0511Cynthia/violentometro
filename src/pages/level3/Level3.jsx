@@ -50,15 +50,18 @@ function Level3() {
     const checkPiecesPlacement = () => {
         let piecesNotInPlace = 0;
         const newCorrectWords = [...correctWords];
+        const newInputWords = [...inputWords];
 
         inputWords.forEach((inputWord, index) => {
             if (inputWord.trim().toLowerCase() === words[index].toLowerCase()) {
                 newCorrectWords[index] = true;
             } else {
+                newInputWords[index] = '';
                 piecesNotInPlace++;
             }
         });
 
+        setInputWords(newInputWords);
         setCorrectWords(newCorrectWords);
 
         if (piecesNotInPlace === 0) {
