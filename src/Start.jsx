@@ -8,7 +8,7 @@ import btn1 from './img/btn1.png';
 import Teen from './img/Teen.gif';
 import Baby from './img/baby.gif';
 import Kid from './img/kid.gif';
-import lOGO_fiscalía from './img/lOGO_fiscalía.png';
+import lOGO_fiscalía from './img/lOGO_fiscalía.jpg';
 import logoUp from './img/LogoUp.png'
 import Btn from './components/Btns/Btn';
 import Contactos from '../src/multimedios/Contactos.mp3';
